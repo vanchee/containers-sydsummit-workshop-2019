@@ -1,5 +1,5 @@
-Dockerizing an app and deploying onto AWS Fargate
-====================================================
+Dockerizing an app and deploying onto AWS Fargate, Amazon EKS
+================================================================
 
 Welcome to the Mythical Mysfits team!
 
