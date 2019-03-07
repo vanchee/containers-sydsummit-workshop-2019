@@ -17,10 +17,17 @@ These labs are designed to be completed in sequence, and the full set of instruc
 
 
 * **Workshop Setup:** [Setup working environment on AWS](#lets-begin)
+
 * **Lab 1:** [Containerize the Mythical Mysfits monolith](#lab-1---containerize-the-mythical-mysfits-adoption-agency-platform)
-* **Lab 2:** [Deploy the container using AWS Fargate](#lab-2---deploy-your-container-using-ecrecs)
+
+* **Lab 2 Option1 :** [Deploy the container using AWS Fargate](#lab-2---deploy-your-container-using-ecrecs)
+              or 
+* **Lab 2 Option 2 :** [Deploy the container using Amazon EKS]
+
 * **Lab 3:** [Scale the adoption platform monolith with an ALB and an ECS Service](#lab-3---scale-the-adoption-platform-monolith-with-an-alb)
+
 * **Lab 4:** [Incrementally build and deploy more microservices with AWS Fargate](#lab-4-incrementally-build-and-deploy-each-microservice-using-fargate)
+
 * **Cleanup** [Put everything away nicely](#workshop-cleanup)
 
 ### Conventions:
