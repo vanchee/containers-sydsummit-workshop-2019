@@ -109,6 +109,56 @@ You will be deploying infrastructure on AWS which will have an associated cost. 
     ```
 
     This script will delete some unneeded Docker images to free up disk space, populate a DynamoDB table with some seed data, upload site assets to S3, and install some Docker-related authentication mechanisms that will be discussed later. Make sure you see the "Success!" message when the script completes.
+    
+    = Digital Modernization
+
+:imagesdir: ../../images
+
+== Getting Started with this Workshop
+
+In order for you to succeed in this workshop, we need you to run through a few steps to finalize the configuration of your Cloud9 environment.
+
+=== Update and install some tools.
+The first step is to update the `AWS CLI`,`pip` and a range of pre-installed packages.
+[source,shell]
+----
+sudo yum update -y && pip install --upgrade --user awscli pip
+exec $SHELL
+----
+
+=== Configure the AWS Environment
+After you have the installed the latest `awscli` and `pip` we need to configure
+our environment a little
+[source,shell]
+----
+aws configure set region us-west-2
+----
+
+=== AWS Workshop Portal
+
+NOTE: If you are running this workshop using the provided AWS Workshop Portal
+environment, following the steps below, if not skip to *Clone the source
+repository for this workshop*.
+
+First thing we need to do is update the IAM Instance Profile associated with the
+Cloud9 environment.
+
+[source,shell]
+----
+aws ec2 associate-iam-instance-profile \
+  --instance-id $(aws ec2 describe-instances \
+    --filters Name=tag:Name,Values="*cloud9*" \
+    --query Reservations[0].Instances[0].InstanceId \
+    --output text) --iam-instance-profile Name="cl9-workshop-role"
+----
+
+Following that we'll need to turn off the Managed Temporary credentials.
+
+The Cloud9 IDE needs to use the assigned IAM Instance profile. Open the *AWS
+Cloud9* menu, go to *Preferences*, go to *AWS Settings*, and disable *AWS
+managed temporary credentials* as depicted in the diagram here:
+
+image::cloud9-credentials.png[Cloud9 Managed Credentials]
 
 
 ### Checkpoint:
