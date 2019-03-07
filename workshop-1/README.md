@@ -21,7 +21,7 @@ These labs are designed to be completed in sequence, and the full set of instruc
 * **Lab 1:** [Containerize the Mythical Mysfits monolith](#lab-1---containerize-the-mythical-mysfits-adoption-agency-platform)
 
 * **Lab 2 Option1 :** [Deploy the container using AWS Fargate](#lab-2---deploy-your-container-using-ecrecs)
-              or 
+                  or 
 * **Lab 2 Option 2 :** [Deploy the container using Amazon EKS]
 
 * **Lab 3:** [Scale the adoption platform monolith with an ALB and an ECS Service](#lab-3---scale-the-adoption-platform-monolith-with-an-alb)
