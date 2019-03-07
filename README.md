@@ -114,7 +114,7 @@ You will be deploying infrastructure on AWS which will have an associated cost. 
 
 :imagesdir: ../../images
 
-== Getting Started with this Workshop
+=== Getting Started with this Workshop
 
 In order for you to succeed in this workshop, we need you to run through a few steps to finalize the configuration of your Cloud9 environment.
 
@@ -142,24 +142,6 @@ repository for this workshop*.
 
 First thing we need to do is update the IAM Instance Profile associated with the
 Cloud9 environment.
-
-[source,shell]
-----
-aws ec2 associate-iam-instance-profile \
-  --instance-id $(aws ec2 describe-instances \
-    --filters Name=tag:Name,Values="*cloud9*" \
-    --query Reservations[0].Instances[0].InstanceId \
-    --output text) --iam-instance-profile Name="cl9-workshop-role"
-----
-
-Following that we'll need to turn off the Managed Temporary credentials.
-
-The Cloud9 IDE needs to use the assigned IAM Instance profile. Open the *AWS
-Cloud9* menu, go to *Preferences*, go to *AWS Settings*, and disable *AWS
-managed temporary credentials* as depicted in the diagram here:
-
-image::cloud9-credentials.png[Cloud9 Managed Credentials]
-
 
 ### Checkpoint:
 At this point, the Mythical Mysfits website should be available at the static site endpoint for the S3 bucket created by CloudFormation. You can visit the site at <code>http://<b><i>BUCKET_NAME</i></b>.s3-website.<b><i>REGION</i></b>.amazonaws.com/</code>. You can find the ***BUCKET_NAME*** in the CloudFormation outputs saved in the file `workshop-1/cfn-outputs.json`. Check that you can view the site, but there won't be much content visible yet until we launch the Mythical Mysfits monolith service:
