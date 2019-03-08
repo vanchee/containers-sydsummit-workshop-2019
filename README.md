@@ -1,5 +1,4 @@
 # Container-SYDSummit-Workshop-2019
-For ECS Users - 2019 SYD Summit
 
 # Mythical Mysfits: A tale of love, loss, and cuddles
 
@@ -21,7 +20,16 @@ That's why we've hired you to be our first Full Stack Engineer. We need a more s
 * Familiarity with Python, vim/emacs/nano, [Docker](https://www.docker.com/), AWS and microservices - not required but a bonus
 
 ### Learning Paths
+
+Choose your own adventure ECS(with Fargate) vs EKS
 We have 2 workshops within the ECS path
+
+### ECS Learning Paths
 
 * [Dockerizing your application and deploying in AWS Fargate](workshop-1/)
 * [DevSecOps with Docker and AWS Fargate](workshop-2/)
+
+### EKS Learning Paths
+
+* [Dockerizing your application and deploying in EKS](workshop-1/)
+
