@@ -34,24 +34,24 @@ Step2 : Choose your own adventure either ECS(with Fargate) or pick EKS
 * [DevSecOps with Docker and AWS Fargate](workshop-2/)
 
 You will learn,
-            * Configure ECS Cluster with Fargate
-            * Autoscaling
-            * logging
-            * Application monitoring
-            * CI/CD Pipeline
+            * Configure ECS Cluster with Fargate  
+            * Autoscaling  
+            * logging  
+            * Application monitoring  
+            * CI/CD Pipeline  
 
 
 ### EKS Learning Paths
 You will learn,
-            * Configure EKS Cluster
-            * Provision Worker nodes
-            * IAM
-            * Deploying
-            * Autoscaling
-            * Monitoring
-            * Logging with CT
-            * Logging to CW with Fluentd?
-            * Updating?
-            * CI/CD Pipeline 
+            * Configure EKS Cluster  
+            * Provision Worker nodes  
+            * IAM  
+            * Deploying  
+            * Autoscaling  
+            * Monitoring  
+            * Logging with CT  
+            * Logging to CW with Fluentd?  
+            * Updating?  
+            * CI/CD Pipeline   
 
 
