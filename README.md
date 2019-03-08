@@ -33,6 +33,25 @@ Step2 : Choose your own adventure either ECS(with Fargate) or pick EKS
 * [Dockerizing your application and deploying in AWS Fargate](workshop-1/)
 * [DevSecOps with Docker and AWS Fargate](workshop-2/)
 
+        * ECS
+            * Configure ECS Cluster with Fargate
+            * Autoscaling
+            * logging
+            * Application monitoring
+            * CI/CD Pipeline
+
+
 ### EKS Learning Paths
+
+            * Configure EKS Cluster
+            * Provision Worker nodes
+            * IAM
+            * Deploying
+            * Autoscaling
+            * Monitoring
+            * Logging with CT
+            * Logging to CW with Fluentd?
+            * Updating?
+            * CI/CD Pipeline 
 
 
