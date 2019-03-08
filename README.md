@@ -33,6 +33,7 @@ Step2 : Choose your own adventure either ECS(with Fargate) or pick EKS
 * [Dockerizing your application and deploying in AWS Fargate](workshop-1/)
 * [DevSecOps with Docker and AWS Fargate](workshop-2/)
 
+You will learn,
         * ECS
             * Configure ECS Cluster with Fargate
             * Autoscaling
@@ -42,7 +43,8 @@ Step2 : Choose your own adventure either ECS(with Fargate) or pick EKS
 
 
 ### EKS Learning Paths
-
+You will learn,
+        * EKS
             * Configure EKS Cluster
             * Provision Worker nodes
             * IAM
