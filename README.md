@@ -21,8 +21,12 @@ That's why we've hired you to be our first Full Stack Engineer. We need a more s
 
 ### Learning Paths
 
-Choose your own adventure ECS(with Fargate) vs EKS
-We have 2 workshops within the ECS path
+Step1 : Build your Docker image and push it to ECR
+
+* [Dockerizing your application](workshop-1/)
+
+Step2 : Choose your own adventure either ECS(with Fargate) or pick EKS
+
 
 ### ECS Learning Paths
 
@@ -31,5 +35,4 @@ We have 2 workshops within the ECS path
 
 ### EKS Learning Paths
 
-* [Dockerizing your application and deploying in EKS](workshop-1/)
 
