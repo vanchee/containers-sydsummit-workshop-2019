@@ -1,9 +1,9 @@
-Monolith to Microservices with Docker and AWS Fargate
+Mythical Mysfits with Docker and AWS Fargate
 ====================================================
 
 Welcome to the Mythical Mysfits team!
 
-In this lab, you'll build the monolithic Mythical Mysfits adoption platform with Docker, deploy it on Amazon ECS, and then break it down into a couple of more manageable microservices. Let's get started!
+In this lab, you'll build the Mythical Mysfits adoption platform with Docker, deploy it on Amazon ECS, and then break it down into a couple of more manageable microservices. Let's get started!
 
 ### Requirements:
 
@@ -18,13 +18,13 @@ These labs are designed to be completed in sequence, and the full set of instruc
 
 * **Workshop Setup:** [Setup working environment on AWS](#lets-begin)
 
-* **Lab 1:** [Containerize the Mythical Mysfits monolith](#lab-1---containerize-the-mythical-mysfits-adoption-agency-platform)
+* **Lab 1:** [Containerize the Mythical Mysfits application](#lab-1---containerize-the-mythical-mysfits-adoption-agency-platform)
 
 * **Lab 2 Option1 :** [Deploy the container using AWS Fargate](#lab-2---deploy-your-container-using-ecrecs)
                   or 
 * **Lab 2 Option 2 :** [Deploy the container using Amazon EKS]
 
-* **Lab 3:** [Scale the adoption platform monolith with an ALB and an ECS Service](#lab-3---scale-the-adoption-platform-monolith-with-an-alb)
+* **Lab 3:** [Scale the adoption platform with an ALB and an ECS Service](#lab-3---scale-the-adoption-platform-monolith-with-an-alb)
 
 * **Cleanup** [Put everything away nicely](#workshop-cleanup)
 
@@ -111,7 +111,7 @@ You will be deploying infrastructure on AWS which will have an associated cost. 
 
 
 ### Checkpoint:
-At this point, the Mythical Mysfits website should be available at the static site endpoint for the S3 bucket created by CloudFormation. You can visit the site at <code>http://<b><i>BUCKET_NAME</i></b>.s3-website.<b><i>REGION</i></b>.amazonaws.com/</code>. You can find the ***BUCKET_NAME*** in the CloudFormation outputs saved in the file `workshop-1/cfn-outputs.json`. Check that you can view the site, but there won't be much content visible yet until we launch the Mythical Mysfits monolith service:
+At this point, the Mythical Mysfits website should be available at the static site endpoint for the S3 bucket created by CloudFormation. You can visit the site at <code>http://<b><i>BUCKET_NAME</i></b>.s3-website.<b><i>REGION</i></b>.amazonaws.com/</code>. You can find the ***BUCKET_NAME*** in the CloudFormation outputs saved in the file `workshop-1/cfn-outputs.json`. Check that you can view the site, but there won't be much content visible yet until we launch the Mythical Mysfits service:
 
 ![initial website](images/00-website.png)
 
@@ -120,7 +120,7 @@ At this point, the Mythical Mysfits website should be available at the static si
 
 ## Lab 1 - Containerize the Mythical Mysfits adoption agency platform
 
-The Mythical Mysfits adoption agency infrastructure has always been running directly on EC2 VMs. Our first step will be to modernize how our code is packaged by containerizing the current Mythical Mysfits adoption platform, which we'll also refer to as the monolith application.  To do this, you will create a [Dockerfile](https://docs.docker.com/engine/reference/builder/), which is essentially a recipe for [Docker](https://aws.amazon.com/docker) to build a container image.  You'll use your [AWS Cloud9](https://aws.amazon.com/cloud9/) development environment to author the Dockerfile, build the container image, and run it to confirm it's able to process adoptions.
+The Mythical Mysfits adoption agency infrastructure has always been running directly on EC2 VMs. Our first step will be to modernize how our code is packaged by containerizing the current Mythical Mysfits adoption platform, which we'll also refer to as the docker application.  To do this, you will create a [Dockerfile](https://docs.docker.com/engine/reference/builder/), which is essentially a recipe for [Docker](https://aws.amazon.com/docker) to build a container image.  You'll use your [AWS Cloud9](https://aws.amazon.com/cloud9/) development environment to author the Dockerfile, build the container image, and run it to confirm it's able to process adoptions.
 
 [Containers](https://aws.amazon.com/what-are-containers/) are a way to package software (e.g. web server, proxy, batch process worker) so that you can run your code and all of its dependencies in a resource isolated process. You might be thinking, "Wait, isn't that a virtual machine (VM)?" Containers virtualize the operating system, while VMs virtualize the hardware. Containers provide isolation, portability and repeatability, so your developers can easily spin up an environment and start building without the heavy lifting.  More importantly, containers ensure your code runs in the same way anywhere, so if it works on your laptop, it will also work in production.
 
@@ -130,11 +130,11 @@ The Mythical Mysfits adoption agency infrastructure has always been running dire
 
 1. Review the draft Dockerfile and add the missing instructions indicated by comments in the file:
 
-    *Note: If you're already familiar with how Dockerfiles work and want to focus on breaking the monolith apart into microservices, skip down to ["HINT: Final Dockerfile"](#final-dockerfile) near the end of step 5, create a Dockerfile in the monolith directory with the hint contents, build the "monolith" image, and continue to step 6.  Otherwise continue on...*
+    *Note: If you're already familiar with how Dockerfiles work and want to focus on ECS or EKS, skip down to ["HINT: Final Dockerfile"](#final-dockerfile) near the end of step 5, create a Dockerfile in the directory with the hint contents, build the "mysfits-app" image, and continue to step 6.  Otherwise continue on...*
 
     One of the Mythical Mysfits' developers started working on a Dockerfile in her free time, but she was pulled to a high priority project before she finished.
 
-    In the Cloud9 file tree, navigate to `workshop-1/app/monolith-service`, and double-click on **Dockerfile.draft** to open the file for editing.
+    In the Cloud9 file tree, navigate to `workshop-1/app/mysfits-app`, and double-click on **Dockerfile.draft** to open the file for editing.
 
     *Note: If you would prefer to use the bash shell and a text editor like vi or emacs instead, you're welcome to do so.*
 
@@ -156,7 +156,7 @@ The Mythical Mysfits adoption agency infrastructure has always been running dire
     #[TODO]: Copy the "service" directory into container image
 
     - Consider the [COPY](https://docs.docker.com/engine/reference/builder/#copy) command
-    - You're copying both the python source files and requirements.txt from the "monolith-service/service" directory on your EC2 instance into the working directory of the container, which can be specified as "."
+    - You're copying both the python source files and requirements.txt from the "mysfits-service/service" directory on your EC2 instance into the working directory of the container, which can be specified as "."
 
     #[TODO]: Install dependencies listed in the requirements.txt file using pip
 
@@ -205,7 +205,7 @@ The Mythical Mysfits adoption agency infrastructure has always been running dire
     This command needs to be run in the same directory where your Dockerfile is. **Note the trailing period** which tells the build command to look in the current directory for the Dockerfile.
 
     <pre>
-    $ docker build -t monolith-service .
+    $ docker build -t mysfits-service .
     </pre>
 
     You'll see a bunch of output as Docker builds all layers of the image.  If there is a problem along the way, the build process will fail and stop (red text and warnings along the way are fine as long as the build process does not fail).  Otherwise, you'll see a success message at the end of the build output like this:
@@ -220,12 +220,12 @@ The Mythical Mysfits adoption agency infrastructure has always been running dire
     Removing intermediate container 291edf3d5a6f
      ---> a8d2aabc6a7b
     Successfully built a8d2aabc6a7b
-    Successfully tagged monolith-service:latest
+    Successfully tagged mysfits-service:latest
     </pre>
 
     *Note: Your output will not be exactly like this, but it will be similar.*
 
-    Awesome, your Dockerfile built successfully, but our developer didn't optimize the Dockefile for the microservices effort later.  Since you'll be breaking apart the monolith codebase into microservices, you will be editing the source code (e.g. `mythicalMysfitsService.py`) often and rebuilding this image a few times.  Looking at your existing Dockerfile, what is one thing you can do to improve build times?
+    Awesome, your Dockerfile built successfully.
 
     <details>
     <summary>HINT</summary>
