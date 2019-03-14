@@ -1,4 +1,3 @@
-# container-sydsummit-workshop-2019
 
 # Mythical Mysfits: A tale of love, loss, and cuddles
 
