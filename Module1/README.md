@@ -1,9 +1,7 @@
-Monolith to Microservices with Docker and AWS Fargate
+Setting up the workshop environment
 ====================================================
 
 Welcome to the Mythical Mysfits team!
-
-In this lab, you'll build the monolithic Mythical Mysfits adoption platform with Docker and then break it down into a couple of more manageable microservices. Let's get started!
 
 ### Requirements:
 
