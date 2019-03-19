@@ -324,7 +324,7 @@ The Mythical Mysfits adoption agency infrastructure has always been running dire
     ![ECR push complete](images/01-ecr-push-complete.png)
 
 
-[*^ back to the top*](#monolith-to-microservices-with-docker-and-aws-fargate)
+[*^ back to the top*](#monolith-to-microservices-with-docker)
 
 ## Lab 4: Incrementally build and deploy each microservice and oush it to ECR
 
@@ -343,9 +343,6 @@ Here's what you will be implementing:
 ![Lab 4](images/04-arch.png)
 
 *Note: The green tasks denote the monolith and the orange tasks denote the "like" microservice
-
-    
-As with the monolith, you'll be using [Fargate](https://aws.amazon.com/fargate/) to deploy these microservices, but this time we'll walk through all the deployment steps for a fresh service.
 
 ### Instructions:
 
