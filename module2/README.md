@@ -327,3 +327,120 @@ The Mythical Mysfits adoption agency infrastructure has always been running dire
 At this point, you should have a working container for the monolith codebase stored in an ECR repository and ready to deploy with ECS in the next lab.
 
 [*^ back to the top*](#monolith-to-microservices-with-docker-and-aws-fargate)
+
+
+### Instructions:
+
+1. Test the placeholder service:
+
+    The CloudFormation stack you launched at the beginning of the workshop included an ALB in front of a placeholder ECS service running a simple container with the NGINX web server. Find the hostname for this ALB in the "LoadBalancerDNS" output variable in the `cfn-output.json` file, and verify that you can load the NGINX default page:
+
+    ![NGINX default page](images/03-nginx.png)
+
+
+3. Update the service to use your task definition:
+
+    Find the ECS cluster named <code>Cluster-<i><b>STACK_NAME</b></i></code>, then select the service named <code><b><i>STACK_NAME</i></b>-MythicalMonolithService-XXX</code> and click "Update" in the upper right:
+
+    ![update service](images/03-update-service.png)
+
+    Update the Task Definition to the revision you created in the previous lab, then click through the rest of the screens and update the service.
+
+4. Test the functionality of the website:
+
+    You can monitor the progress of the deployment on the "Tasks" tab of the service page:
+
+    ![monitoring the update](images/03-deployment.png)
+
+    The update is fully deployed once there is just one instance of the Task running the latest revision:
+
+    ![fully deployed](images/03-fully-deployed.png)
+
+    Visit the S3 static site for the Mythical Mysfits (which was empty earlier) and you should now see the page filled with Mysfits once your update is fully deployed. Remember you can access the website at <code>http://<b><i>BUCKET_NAME</i></b>.s3-website.<b><i>REGION</i></b>.amazonaws.com/</code> where the bucket name can be found in the `workshop-1/cfn-output.json` file:
+
+    ![the functional website](images/03-website.png)
+
+    Click the heart icon to like a Mysfit, then click the Mysfit to see a detailed profile, and ensure that the like count has incremented:
+
+    ![like functionality](images/03-like-count.png)
+
+    This ensures that the monolith can read from and write to DynamoDB, and that it can process likes. Check the CloudWatch logs from ECS and ensure that you can see the "Like processed." message in the logs:
+
+    ![like logs](images/03-like-processed.png)
+
+<details>
+<summary>INFO: What is a service and how does it differ from a task??</summary>
+
+An [ECS service](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html) is a concept where ECS allows you to run and maintain a specified number (the "desired count") of instances of a task definition simultaneously in an ECS cluster.
+
+
+tl;dr a **Service** is comprised of multiple **tasks** and will keep them up and running. See the link above for more detail.
+
+</details>
+
+### Checkpoint:
+Sweet! Now you have a load-balanced ECS service managing your containerized Mythical Mysfits application. It's still a single monolith container, but we'll work on breaking it down next.
+
+[*^ back to the top*](#monolith-to-microservices-with-docker-and-aws-fargate)
+
+## Lab 4: Incrementally build and deploy each microservice using Fargate
+
+It's time to break apart the monolithic adoption into microservices. To help with this, let's see how the monolith works in more detail.
+
+> The monolith serves up several different API resources on different routes to fetch info about Mysfits, "like" them, or adopt them.
+>
+> The logic for these resources generally consists of some "processing" (like ensuring that the user is allowed to take a particular action, that a Mysfit is eligible for adoption, etc) and some interaction with the persistence layer, which in this case is DynamoDB.
+
+> It is often a bad idea to have many different services talking directly to a single database (adding indexes and doing data migrations is hard enough with just one application), so rather than split off all of the logic of a given resource into a separate service, we'll start by moving only the "processing" business logic into a separate service and continue to use the monolith as a facade in front of the database. This is sometimes described as the [Strangler Application pattern](https://www.martinfowler.com/bliki/StranglerApplication.html), as we're "strangling" the monolith out of the picture and only continuing to use it for the parts that are toughest to move out until it can be fully replaced.
+
+> The ALB has another feature called [path-based routing](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html#path-conditions), which routes traffic based on URL path to particular target groups.  This means you will only need a single instance of the ALB to host your microservices.  The monolith service will receive all traffic to the default path, '/'.  Adoption and like services will be '/adopt' and '/like', respectively.
+
+Here's what you will be implementing:
+
+![Lab 4](images/04-arch.png)
+
+*Note: The green tasks denote the monolith and the orange tasks denote the "like" microservice
+
+    
+As with the monolith, you'll be using [Fargate](https://aws.amazon.com/fargate/) to deploy these microservices, but this time we'll walk through all the deployment steps for a fresh service.
+
+### Instructions:
+
+1. First, we need to add some glue code in the monolith to support moving the "like" function into a separate service. You'll use your Cloud9 environment to do this.  If you've closed the tab, go to the [Cloud9 Dashboard](https://console.aws.amazon.com/cloud9/home) and find your environment. Click "**Open IDE**". Find the `app/monolith-service/service/mythicalMysfitsService.py` source file, and uncomment the following section:
+
+    ```
+    # @app.route("/mysfits/<mysfit_id>/fulfill-like", methods=['POST'])
+    # def fulfillLikeMysfit(mysfit_id):
+    #     serviceResponse = mysfitsTableClient.likeMysfit(mysfit_id)
+    #     flaskResponse = Response(serviceResponse)
+    #     flaskResponse.headers["Content-Type"] = "application/json"
+    #     return flaskResponse
+    ```
+
+    This provides an endpoint that can still manage persistence to DynamoDB, but omits the "business logic" (okay, in this case it's just a print statement, but in real life it could involve permissions checks or other nontrivial processing) handled by the `process_like_request` function.
+
+2. With this new functionality added to the monolith, rebuild the monolith docker image with a new tag, such as `nolike`, and push it to ECR just as before (It is a best practice to avoid the `latest` tag, which can be ambiguous. Instead choose a unique, descriptive name, or even better user a Git SHA and/or build ID):
+
+    <pre>
+    $ cd app/monolith-service
+    $ docker build -t monolith-service:nolike .
+    $ docker tag monolith-service:nolike <b><i>ECR_REPOSITORY_URI</i></b>:nolike
+    $ docker push <b><i>ECR_REPOSITORY_URI</i></b>:nolike
+    </pre>
+
+3. Now, just as in Lab 2, create a new revision of the monolith Task Definition (this time pointing to the "nolike" version of the container image), AND update the monolith service to use this revision as you did in Lab 3.
+
+4. Now, build the like service and push it to ECR.
+
+    To find the like-service ECR repo URI, navigate to [Repositories](https://console.aws.amazon.com/ecs/home#/repositories) in the ECS dashboard, and find the repo named like <code><b><i>STACK_NAME</i></b>-like-XXX</code>.  Click on the like-service repository and copy the repository URI.
+
+    ![Getting Like Service Repo](images/04-ecr-like.png)
+
+    *Note: Your URI will be unique.*
+
+    <pre>
+    $ cd app/like-service
+    $ docker build -t like-service .
+    $ docker tag like-service:latest <b><i>ECR_REPOSITORY_URI</i></b>:latest
+    $ docker push <b><i>ECR_REPOSITORY_URI</i></b>:latest
+    </pre>
