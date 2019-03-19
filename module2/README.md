@@ -383,7 +383,7 @@ Sweet! Now you have a load-balanced ECS service managing your containerized Myth
 
 [*^ back to the top*](#monolith-to-microservices-with-docker-and-aws-fargate)
 
-## Lab 4: Incrementally build and deploy each microservice using Fargate
+## Lab 4: Incrementally build and deploy each microservice and oush it to ECR
 
 It's time to break apart the monolithic adoption into microservices. To help with this, let's see how the monolith works in more detail.
 
