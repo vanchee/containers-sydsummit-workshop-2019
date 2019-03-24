@@ -273,60 +273,10 @@ The Mythical Mysfits adoption agency infrastructure has always been running dire
 
     In the sample output above, the container was assigned the name "awesome_varahamihira".  Names are arbitrarily assigned.  You can also pass the docker run command a name option if you want to specify the running name.  You can read more about it in the [Docker run reference](https://docs.docker.com/engine/reference/run/).  Kill the container using `docker kill` now that we know it's working properly.
 
-4. Now that you have a working Docker image, tag and push the image to [Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/).  ECR is a fully-managed Docker container registry that makes it easy to store, manage, and deploy Docker container images. In the next lab, we'll use ECS to pull your image from ECR.
-
-    In the AWS Management Console, navigate to [Repositories](https://console.aws.amazon.com/ecs/home#/repositories) in the ECS dashboard.  You should see repositories for the monolith service and like service.  These were created by CloudFormation and named like <code><b><i>STACK_NAME</i></b>-mono-xxx</code> and <code><b><i>STACK_NAME</i></b>-like-xxx</code> where ***STACK_NAME*** is the name of the CloudFormation stack (the stack name may be truncated).
-
-    ![ECR repositories](images/01-ecr-repo.png)
-
-    Click on the repository name for the monolith, and note down the Repository URI (you will use this value again in the next lab):
-
-    ![ECR monolith repo](images/01-ecr-repo-uri.png)
-
-    *Note: Your repository URI will be unique.*
-
-    Tag and push your container image to the monolith repository.
-
-    <pre>
-    $ docker tag monolith-service:latest <b><i>ECR_REPOSITORY_URI</i></b>:latest
-    $ docker push <b><i>ECR_REPOSITORY_URI</i></b>:latest
-    </pre>
-
-    When you issue the push command, Docker pushes the layers up to ECR.
-
-    Here's sample output from these commands:
-
-    <pre>
-    $ docker tag monolith-service:latest 873896820536.dkr.ecr.us-east-2.amazonaws.com/mysfit-mono-oa55rnsdnaud:latest
-    $ docker push 873896820536.dkr.ecr.us-east-2.amazonaws.com/mysfit-mono-oa55rnsdnaud:latest
-    The push refers to a repository [873896820536.dkr.ecr.us-east-2.amazonaws.com/mysfit-mono-oa55rnsdnaud:latest]
-    0f03d692d842: Pushed
-    ddca409d6822: Pushed
-    d779004749f3: Pushed
-    4008f6d92478: Pushed
-    e0c4f058a955: Pushed
-    7e33b38be0e9: Pushed
-    b9c7536f9dd8: Pushed
-    43a02097083b: Pushed
-    59e73cf39f38: Pushed
-    31df331e1f23: Pushed
-    630730f8c75d: Pushed
-    827cd1db9e95: Pushed
-    e6e107f1da2f: Pushed
-    c41b9462ea4b: Pushed
-    latest: digest: sha256:a27cb7c6ad7a62fccc3d56dfe037581d314bd8bd0d73a9a8106d979ac54b76ca size: 3252
-    </pre>
-
-    *Note: Typically, you'd have to log into your ECR repo. However, you did not need to authenticate docker with ECR because the [Amazon ECR Credential Helper](https://github.com/awslabs/amazon-ecr-credential-helper) has been installed and configured for you on the Cloud9 Environment.  This was done earlier when you ran the setup script. You can read more about the credentials helper in this [article](https://aws.amazon.com/blogs/compute/authenticating-amazon-ecr-repositories-for-docker-cli-with-credential-helper/).*
-
-    If you refresh the ECR repository page in the console, you'll see a new image uploaded and tagged as latest.
-
-    ![ECR push complete](images/01-ecr-push-complete.png)
-
 
 [*^ back to the top*](#monolith-to-microservices-with-docker)
 
-## Lab 4: Incrementally build and deploy each microservice and oush it to ECR
+## Lab 4: Incrementally build and deploy each microservice and push it to ECR
 
 It's time to break apart the monolithic adoption into microservices. To help with this, let's see how the monolith works in more detail.
 
@@ -368,9 +318,7 @@ Here's what you will be implementing:
     $ docker push <b><i>ECR_REPOSITORY_URI</i></b>:nolike
     </pre>
 
-3. Now, just as in Lab 2, create a new revision of the monolith Task Definition (this time pointing to the "nolike" version of the container image), AND update the monolith service to use this revision as you did in Lab 3.
-
-4. Now, build the like service and push it to ECR.
+3. Now, build the like service and push it to ECR.
 
     To find the like-service ECR repo URI, navigate to [Repositories](https://console.aws.amazon.com/ecs/home#/repositories) in the ECS dashboard, and find the repo named like <code><b><i>STACK_NAME</i></b>-like-XXX</code>.  Click on the like-service repository and copy the repository URI.
 
