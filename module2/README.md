@@ -276,7 +276,7 @@ The Mythical Mysfits adoption agency infrastructure has always been running dire
 
 [*^ back to the top*](#monolith-to-microservices-with-docker)
 
-## Lab 4: Incrementally build and deploy each microservice and push it to ECR
+## Incrementally build and deploy each microservice and push it to ECR
 
 It's time to break apart the monolithic adoption into microservices. To help with this, let's see how the monolith works in more detail.
 
