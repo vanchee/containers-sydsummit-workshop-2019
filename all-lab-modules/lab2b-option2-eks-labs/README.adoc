@@ -1,19 +1,8 @@
-= Digital Modernization
+= Deploy your container onto EKS
 
-== Container Orchestration
+Deploying individual containers is not difficult. However, when you need to coordinate many container deployments, a container management tool like EKS can greatly simplify this.
 
-****
-*Expected Outcome:*
-
-* 200 level usage of Amazon EKS
-
-*Lab Requirements:*
-
-* an Amazon Elastic Container Service for Kubernetes Cluster (EKS)
-
-*Average Lab Time:*
-20-30 minutes
-****
+During the first step (lab environment setup) you have already setup the EKS cluster.
 
 === Introduction
 
