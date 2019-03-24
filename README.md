@@ -20,7 +20,9 @@ That's why we've hired you to be our first Full Stack Engineer. We need a more s
 
 ### Learning Paths
 
-Step1 : Build your Docker image and push it to ECR
+Step1 : Setting up the workshop environment (Cloud9) and spin up clusters (ECS & EKS)
+
+Step2 : Build your Docker image and push it to ECR
 
 * [Dockerizing your application](workshop-1/)
 
