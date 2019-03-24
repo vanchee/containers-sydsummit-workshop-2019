@@ -1,4 +1,4 @@
-* **Lab 1:** [Containerize the Mythical Mysfits application](#lab-1---containerize-the-mythical-mysfits-adoption-agency-platform)
+* **Goal: modernize the mythical mysfits application, containerize and push it to container repository** [Containerize the Mythical Mysfits application](#lab-1---containerize-the-mythical-mysfits-adoption-agency-platform)
 
 ## Lab 1 - Containerize the Mythical Mysfits adoption agency platform
 
