@@ -18,21 +18,20 @@ That's why we've hired you to be our first Full Stack Engineer. We need a more s
 * AWS IAM account with elevated privileges allowing you to interact with various AWS Services
 * Familiarity with Python, vim/emacs/nano, [Docker](https://www.docker.com/), AWS and microservices - not required but a bonus
 
-### Learning Paths
+### Building your docker image
 
 Step1 : Setting up the workshop environment (Cloud9) and spin up clusters (ECS & EKS)
 
-Step2 : Build your Docker image and push it to ECR
+Step2 : Build your Docker image and push it to container repository (ECR)
 
 * [Dockerizing your application](workshop-1/)
 
-Step2 : Choose your own adventure either ECS(with Fargate) or pick EKS
+Step3: Pick a learning path ----> Choose either ECS(with Fargate) or EKS (Elastic container serices for Kubernetes)
 
+### ECS Learning Path
 
-### ECS Learning Paths
-
-* [Dockerizing your application and deploying in AWS Fargate](workshop-1/)
-* [DevSecOps with Docker and AWS Fargate](workshop-2/)
+* [Dockerizing your application and deploying in AWS Fargate]
+* [DevSecOps with Docker and AWS Fargate]
 
 You will learn,
   
@@ -43,7 +42,7 @@ You will learn,
             * CI/CD Pipeline  
 
 
-### EKS Learning Paths
+### EKS Learning Path
 You will learn,
   
             * Configure EKS Cluster  
