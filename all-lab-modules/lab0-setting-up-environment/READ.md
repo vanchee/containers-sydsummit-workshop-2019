@@ -59,6 +59,8 @@ At this point, the Mythical Mysfits website should be available at the static si
 
 ![initial website](images/00-website.png)
 
+###########################
+
 ### EKS Cluster Setup (Follow only if you are an EKS lab user):
 
 In order for you to succeed in this workshop, we need you to run through a few steps to finalize the configuration of your Cloud9 environment.
