@@ -9,7 +9,7 @@
 | Region | Launch Template |
 | ------------ | ------------- | 
 | **Oregon** (us-west-2) | [![Launch Mythical Mysfits Stack into Oregon with CloudFormation](/images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=mythical-mysfits-fargate&templateURL=https://s3.amazonaws.com/mythical-mysfits-website/fargate/core.yml) | 
-|**Sydney** (ap-southeast-2) | [![Launch Mythical Mysfits Stack into Sydney with CloudFormation](/images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-2#/stacks/new?stackName=mythical-mysfits-fargate&templateURL=https://s3.amazonaws.com/mythical-mysfits-website/fargate/core.yml) |
+|**Singapore** (ap-southeast-1) | [![Launch Mythical Mysfits Stack into Sydney with CloudFormation](/images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-2#/stacks/new?stackName=mythical-mysfits-fargate&templateURL=https://s3.amazonaws.com/mythical-mysfits-website/fargate/core.yml) |
 
 
 2. The template will automatically bring you to the CloudFormation Dashboard and start the stack creation process in the specified region. Give the stack a name that is unique within your account, and proceed through the wizard to launch the stack. Leave all options at their default values, but make sure to check the box to allow CloudFormation to create IAM roles on your behalf:
@@ -154,24 +154,28 @@ Step 2::
 Now that we have the key, let's launch the EKS Cluster.
 [source,shell]
 ----
-eksctl create cluster --full-ecr-access --name=petstore
+eksctl create cluster --full-ecr-access --name=mythicalmysfits
 ----
 
 Step 3::
 You can expect to see an output like the one below...
 [.output]
 ....
-eksctl create cluster --full-ecr-access --name=petstore
-2018-08-27T21:36:50Z [ℹ]  setting availability zones to [us-west-2c us-west-2b us-west-2a]
-2018-08-27T21:36:50Z [ℹ]  importing SSH public key "/home/ec2-user/.ssh/eks-key.pub" as "eksctl-petstore-20:bc:c5:14:ab:c1:6b:92:10:e5:92:c0:2a:9e:07:37"
-2018-08-27T21:36:50Z [ℹ]  creating EKS cluster "petstore" in "us-west-2" region
-2018-08-27T21:36:50Z [ℹ]  creating VPC stack "EKS-petstore-VPC"
-2018-08-27T21:36:50Z [ℹ]  creating ServiceRole stack "EKS-petstore-ServiceRole"
-2018-08-27T21:37:31Z [✔]  created ServiceRole stack "EKS-petstore-ServiceRole"
-2018-08-27T21:37:51Z [✔]  created VPC stack "EKS-petstore-VPC"
-2018-08-27T21:37:51Z [ℹ]  creating control plane "petstore"
-...
-....
+[ℹ]  using region us-west-2
+[ℹ]  setting availability zones to [us-west-2a us-west-2c us-west-2d]
+[ℹ]  subnets for us-west-2a - public:192.168.0.0/19 private:192.168.96.0/19
+[ℹ]  subnets for us-west-2c - public:192.168.32.0/19 private:192.168.128.0/19
+[ℹ]  subnets for us-west-2d - public:192.168.64.0/19 private:192.168.160.0/19
+[ℹ]  nodegroup "ng-8897c340" will use "ami-0c28139856aaf9c3b" [AmazonLinux2/1.11]
+[ℹ]  creating EKS cluster "mythicalmysfitseks" in "us-west-2" region
+[ℹ]  will create 2 separate CloudFormation stacks for cluster itself and the initial nodegroup
+[ℹ]  if you encounter any issues, check CloudFormation console or try 'eksctl utils describe-stacks --region=us-west-2 --name=mythicalmysfitseks'
+[ℹ]  building cluster stack "eksctl-mythicalmysfitseks-cluster"
+[ℹ]  creating nodegroup stack "eksctl-mythicalmysfitseks-nodegroup-ng-8897c340"
+[ℹ]  --nodes-min=2 was set automatically for nodegroup ng-8897c340
+[ℹ]  --nodes-max=2 was set automatically for nodegroup ng-8897c340
+[✔]  all EKS cluster resource for "mythicalmysfitseks" had been created
+[✔]  saved kubeconfig as "/home/ec2-user/.kube/config"
 
 We will leave this process running, and get back to it later in the workshop. So let's open a new `terminal` by pressing the combination keys `alt+t`
 
