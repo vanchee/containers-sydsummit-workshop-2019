@@ -39,6 +39,6 @@ You will learn,
   
             * Configure EKS Cluster, provisoning worker nodes  
             * Splitiing monolith into microservices, leveraging ALB   
-            * Logging & Monitoring with CW  
+            * Logging & Monitoring with 
             * CI/CD Pipeline for EKS
 
