@@ -20,40 +20,25 @@ That's why we've hired you to be our first Full Stack Engineer. We need a more s
 
 ### Building your docker image
 
-Step1 : Setting up the workshop environment (Cloud9) and spin up clusters (ECS & EKS)
-
-Step2 : Build your Docker image and push it to container repository (ECR)
-
-* [Dockerizing your application](workshop-1/)
-
-Step3: Pick a learning path ----> Choose either ECS(with Fargate) or EKS (Elastic container serices for Kubernetes)
+Step1 : Setting up the workshop environment (Cloud9)
+Step2 : Trigger clusters creation either ECS or EKS ( CFN Templates for ECS / EKS available)
+Step3 : Build your Docker image and push it to container repository (ECR)
+Step4:  Choose either ECS(with Fargate) or EKS (Elastic container serices for Kubernetes)
 
 ### ECS Learning Path
-
-* [Dockerizing your application and deploying in AWS Fargate]
-* [DevSecOps with Docker and AWS Fargate]
 
 You will learn,
   
             * Configure ECS Cluster with Fargate  
-            * Autoscaling  
-            * logging  
-            * Application monitoring  
-            * CI/CD Pipeline  
-
+            * Splitiing monolith into microservices, leveraging ALB  
+            * logging & Application monitoring  
+            * CI/CD Pipeline for ECS 
 
 ### EKS Learning Path
 You will learn,
   
-            * Configure EKS Cluster  
-            * Provision Worker nodes  
-            * IAM  
-            * Deploying  
-            * Autoscaling  
-            * Monitoring  
-            * Logging with CT  
-            * Logging to CW with Fluentd?  
-            * Updating?  
+            * Configure EKS Cluster, provisoning worker nodes  
+            * Splitiing monolith into microservices, leveraging ALB   
+            * Logging & Monitoring with CW  
             * CI/CD Pipeline   
-
 
