@@ -109,13 +109,7 @@ image::cloud9-credentials.png[Cloud9 Managed Credentials]
 
 
 
-=== Clone the source repository for this workshop.
-Now we want to clone the repository that contains all the content and files you need to complete this workshop.
-[source,shell]
-----
-cd ~/environment
-git clone https://github.com/mandusm/aws-modernization-workshop.git
-----
+=== Spin-up an EKS cluster
 
 === Installing 3rd Party CLIs
 During the workshop we will be using a couple of third party `CLI` tools like `eksctl` to configure our EKS cluster, and `kubectl` to interact with our Kubernetes cluster.
