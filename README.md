@@ -21,7 +21,7 @@ That's why we've hired you to be our first Full Stack Engineer. We need a more s
 ### Building your docker image
 
 Step1 : [Setting up the workshop environment (Cloud9)](https://github.com/vanchee/containers-sydsummit-workshop-2019/blob/master/all-lab-modules/lab0-setting-up-environment/READ.md)   
-Step2 : Trigger clusters creation either ECS or EKS ( CFN Templates for ECS / EKS available)   
+Step2 (Applies ONLY for EKS users) : Trigger clusters creation for EKS    
 Step3 : Build your Docker image and push it to container repository (ECR)    
 Step4 : Choose either ECS(with Fargate) or EKS (Elastic container serices for Kubernetes) to deploy your containers
 
