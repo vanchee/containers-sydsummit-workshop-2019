@@ -1,0 +1,115 @@
+
+### EKS Cluster Setup (Follow only if you are an EKS lab user):
+
+In order for you to succeed in this workshop, we need you to run through a few steps to finalize the configuration of your Cloud9 environment.
+
+=== Update and install some tools.
+The first step is to update the `AWS CLI`,`pip` and a range of pre-installed packages.
+[source,shell]
+----
+sudo yum update -y && pip install --upgrade --user awscli pip
+exec $SHELL
+----
+
+=== Configure the AWS Environment
+After you have the installed the latest `awscli` and `pip` we need to configure
+our environment a little
+[source,shell]
+----
+aws configure set region us-west-2
+----
+
+=== AWS Workshop Portal
+
+NOTE: If you are running this workshop using the provided AWS Workshop Portal
+environment, following the steps below, if not skip to *Clone the source
+repository for this workshop*.
+
+First thing we need to do is update the IAM Instance Profile associated with the
+Cloud9 environment.
+
+[source,shell]
+----
+aws ec2 associate-iam-instance-profile \
+  --instance-id $(aws ec2 describe-instances \
+    --filters Name=tag:Name,Values="*cloud9*" \
+    --query Reservations[0].Instances[0].InstanceId \
+    --output text) --iam-instance-profile Name="cl9-workshop-role"
+----
+
+Following that we'll need to turn off the Managed Temporary credentials.
+
+The Cloud9 IDE needs to use the assigned IAM Instance profile. Open the *AWS
+Cloud9* menu, go to *Preferences*, go to *AWS Settings*, and disable *AWS
+managed temporary credentials* as depicted in the diagram here:
+
+image::cloud9-credentials.png[Cloud9 Managed Credentials]
+
+
+
+=== Spin-up an EKS cluster
+
+=== Installing 3rd Party CLIs
+During the workshop we will be using a couple of third party `CLI` tools like `eksctl` to configure our EKS cluster, and `kubectl` to interact with our Kubernetes cluster.
+
+Step 1::
+Let's make a `bin` folder where these binaries will be stored and change our directory to the new location.
+[source,shell]
+----
+mkdir ~/bin
+cd ~/bin
+----
+
+Step 2::
+Download the required `CLI` tools from their locations. Make them Runnable, and add them to our `$PATH`
+[source,shell]
+----
+curl -skL "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp && mv /tmp/eksctl ~/bin/
+curl -skLo ~/bin/kubectl "https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-06-05/bin/linux/amd64/kubectl"
+curl -skLo ~/bin/heptio-authenticator-aws "https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v0.3.0/heptio-authenticator-aws_0.3.0_linux_amd64"
+chmod -R +x ~/bin
+echo "export PATH=~/bin:\${PATH}" >> ~/.bashrc
+exec $SHELL
+----
+
+=== Launch an EKS Cluster
+It takes a few minutes to launch an EKS cluster, so we will have you launch one now, while completing some initial modules. We will launch our EKS Cluster using the `eksctl` tool
+
+Step 1::
+`eksctl` requires a SSH Key to configure your EKS nodes with.
+[source,shell]
+----
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa
+----
+
+Step 2::
+Now that we have the key, let's launch the EKS Cluster.
+[source,shell]
+----
+eksctl create cluster --full-ecr-access --name=mythicalmysfits
+----
+
+Step 3::
+You can expect to see an output like the one below...
+[.output]
+....
+[ℹ]  using region us-west-2
+[ℹ]  setting availability zones to [us-west-2a us-west-2c us-west-2d]
+[ℹ]  subnets for us-west-2a - public:192.168.0.0/19 private:192.168.96.0/19
+[ℹ]  subnets for us-west-2c - public:192.168.32.0/19 private:192.168.128.0/19
+[ℹ]  subnets for us-west-2d - public:192.168.64.0/19 private:192.168.160.0/19
+[ℹ]  nodegroup "ng-8897c340" will use "ami-0c28139856aaf9c3b" [AmazonLinux2/1.11]
+[ℹ]  creating EKS cluster "mythicalmysfitseks" in "us-west-2" region
+[ℹ]  will create 2 separate CloudFormation stacks for cluster itself and the initial nodegroup
+[ℹ]  if you encounter any issues, check CloudFormation console or try 'eksctl utils describe-stacks --region=us-west-2 --name=mythicalmysfitseks'
+[ℹ]  building cluster stack "eksctl-mythicalmysfitseks-cluster"
+[ℹ]  creating nodegroup stack "eksctl-mythicalmysfitseks-nodegroup-ng-8897c340"
+[ℹ]  --nodes-min=2 was set automatically for nodegroup ng-8897c340
+[ℹ]  --nodes-max=2 was set automatically for nodegroup ng-8897c340
+[✔]  all EKS cluster resource for "mythicalmysfitseks" had been created
+[✔]  saved kubeconfig as "/home/ec2-user/.kube/config"
+
+We will leave this process running, and get back to it later in the workshop. So let's open a new `terminal` by pressing the combination keys `alt+t`
+
+
+[*^ back to top*]
