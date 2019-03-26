@@ -28,7 +28,6 @@ Step2 : [Build your Docker image and push it to container repository (ECR)](http
  Step3a : Deploy on ECS(with Fargate)   
            * Step 3a.1 : [Deploy-your-container-to-ecs-fargate-cluster](https://github.com/vanchee/containers-sydsummit-workshop-2019/blob/master/all-lab-modules/lab2a-option1-ecs-labs/01-deploy-your-ecs-fargate-cluster/READ.md)     
             * Step 3a.2 :[breaking-monolith-image-ecs](https://github.com/vanchee/containers-sydsummit-workshop-2019/blob/master/all-lab-modules/lab2a-option1-ecs-labs/02-breaking-monolith-image-ecs/README.md)     
- 
             * Step 3a.3 :[automating-end-to-end-deployments-for-aws-fargate](https://github.com/vanchee/amazon-ecs-mythicalmysfits-workshop/tree/master/workshop-2/Lab-3)   
             
  or      
