@@ -25,8 +25,12 @@ Step1 : [Setting up the workshop environment (Cloud9)](https://github.com/vanche
 Step2 : [Build your Docker image and push it to container repository (ECR)](https://github.com/vanchee/containers-sydsummit-workshop-2019/tree/master/all-lab-modules/lab1-building-docker-image)       
 
 
- Step3a : Deploy on ECS(with Fargate)
- or   
+ Step3a : Deploy on ECS(with Fargate)   
+           * Step 3a.1 : [Deploy-your-container-to-ecs-fargate-cluster](https://github.com/vanchee/containers-sydsummit-workshop-2019/blob/master/all-lab-modules/lab2a-option1-ecs-labs/01-deploy-your-ecs-fargate-cluster/READ.md)     
+            * Step 3a.2 :[breaking-monolith-image-ecs](https://github.com/vanchee/containers-sydsummit-workshop-2019/blob/master/all-lab-modules/lab2a-option1-ecs-labs/02-breaking-monolith-image-ecs/README.md)     
+ 
+ or      
+ 
  Step3b : Deploy on EKS 
 
 ### ECS Learning Path
