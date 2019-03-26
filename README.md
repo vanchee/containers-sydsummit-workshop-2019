@@ -22,7 +22,7 @@ That's why we've hired you to be our first Full Stack Engineer. We need a more s
 
 Step1 : [Setting up the workshop environment (Cloud9)](https://github.com/vanchee/containers-sydsummit-workshop-2019/blob/master/all-lab-modules/lab0-setting-up-environment/READ.md)   
             * Step1(a) (Applies ONLY for EKS users) : [Trigger clusters creation for EKS](https://github.com/vanchee/containers-sydsummit-workshop-2019/tree/master/all-lab-modules/lab0-setup-eks-cluster)        
-Step2 : Build your Docker image and push it to container repository (ECR)    
+Step2 : [Build your Docker image and push it to container repository (ECR)](https://github.com/vanchee/containers-sydsummit-workshop-2019/tree/master/all-lab-modules/lab1-building-docker-image)        
 Step3 : Choose either ECS(with Fargate) or EKS (Elastic container serices for Kubernetes) to deploy your containers
 
 ### ECS Learning Path
