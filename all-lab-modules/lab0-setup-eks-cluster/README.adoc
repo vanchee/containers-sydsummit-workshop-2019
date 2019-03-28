@@ -46,7 +46,7 @@ managed temporary credentials* as depicted in the diagram here:
 image::cloud9-credentials.png[Cloud9 Managed Credentials]
 
 
-=== Spin-up an EKS cluster
+=== Spin-up an EKS cluster TEsting update
 
 === Installing 3rd Party CLIs
 During the workshop we will be using a couple of third party `CLI` tools like `eksctl` to configure our EKS cluster, and `kubectl` to interact with our Kubernetes cluster.
