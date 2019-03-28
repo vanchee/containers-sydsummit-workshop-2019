@@ -46,7 +46,6 @@ managed temporary credentials* as depicted in the diagram here:
 image::cloud9-credentials.png[Cloud9 Managed Credentials]
 
 
-
 === Spin-up an EKS cluster
 
 === Installing 3rd Party CLIs
