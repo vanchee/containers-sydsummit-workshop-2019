@@ -41,12 +41,12 @@ https://kubernetes.io/docs/concepts/workloads/controllers/deployment/[here]
 cd ~/environment/aws-modernization-workshop/modules/container-orchestration-eks
 ----
 +
-3. Open the *petstore-eks-manifest.yaml* file by double clicking the filename
+3. Open the *mythicalmysfits-eks-manifest.yaml* file by double clicking the filename
 in the lefthand navigation in Cloud9.
 
 4. The file has the following contents:
 +
-.petstore-eks-manifest.yaml
+.mythical-mysfits-eks-manifest.yaml
 [source,yaml]
 ----
 apiVersion: v1
@@ -64,17 +64,17 @@ items:
   reclaimPolicy: Retain
   mountOptions:
     - debug
-    
+
 - apiVersion: v1
   kind: Namespace
   metadata:
-    name: petstore
+    name: mythicalmysfitseks
 
 - kind: PersistentVolume
   apiVersion: v1
   metadata:
-    name: postgres-pv-volume
-    namespace: petstore
+    name: mysfits-pv-volume
+    namespace: mythicalmysfitseks
     labels:
       type: local
   spec:
@@ -90,7 +90,7 @@ items:
   kind: PersistentVolumeClaim
   metadata:
     name: postgres-pv-claim
-    namespace: petstore
+    namespace: mythicalmysfitseks
   spec:
     storageClassName: gp2
     accessModes:
@@ -103,7 +103,7 @@ items:
   kind: Service
   metadata:
     name: postgres
-    namespace: petstore
+    namespace: mythicalmysfitseks
   spec:
     ports:
     - port: 5432
@@ -115,7 +115,7 @@ items:
   kind: Deployment
   metadata:
     name: postgres
-    namespace: petstore
+    namespace: mythicalmysfitseks
   spec:
     selector:
       matchLabels:
@@ -153,7 +153,7 @@ items:
   kind: Service
   metadata:
     name: frontend
-    namespace: petstore
+    namespace: mythicalmysfitseks
   spec:
     selector:
       app: frontend
@@ -170,7 +170,7 @@ items:
   kind: Deployment
   metadata:
     name: frontend
-    namespace: petstore
+    namespace: mythicalmysfitseks
     labels:
       app: frontend
   spec:
@@ -231,7 +231,7 @@ sed -i "s/<YourAccountID>/${ACCOUNT_ID}/" petstore-eks-manifest.yaml
 kubectl apply -f petstore-eks-manifest.yaml
 ----
 +
-[.output]
+[.output]xz
 ....
 namespace/petstore created
 persistentvolume/postgres-pv-volume configured
