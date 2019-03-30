@@ -1,5 +1,6 @@
+EKS Cluster Setup (Follow only if you are an EKS lab user):
 ---
-title: "Create an IAM role for your Workspace"
+Create an IAM role for your Workspace
 ---
 1. Follow [this deep link to create an IAM role with Administrator access.](https://console.aws.amazon.com/iam/home#/roles$new?step=review&commonUseCase=EC2%2BEC2&selectedUseCase=EC2&policies=arn:aws:iam::aws:policy%2FAdministratorAccess)
 1. Confirm that **AWS service** and **EC2** are selected, then click **Next** to view permissions.
@@ -8,7 +9,7 @@ title: "Create an IAM role for your Workspace"
 ![createrole](/images/createrole.png)
 
 ---
-title: "Attach the IAM role to your Workspace"
+Attach the IAM role to your Workspace
 ---
 
 1. Follow [this deep link to find your Cloud9 EC2 instance](https://console.aws.amazon.com/ec2/v2/home?#Instances:tag:Name=aws-cloud9-eksworkshop*;sort=desc:launchTime)
@@ -19,7 +20,7 @@ title: "Attach the IAM role to your Workspace"
 
 
 ---
-title: "Update IAM settings for your Workspace"
+"Update IAM settings for your Workspace"
 ---
 
 {{% notice info %}}
