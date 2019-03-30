@@ -144,7 +144,7 @@ aws-iam-authenticator help
 sudo yum -y install jq
 ```
 ---
-title: "Create an SSH key"
+"Create an SSH key"
 ---
 
 {{% notice info %}}
@@ -166,3 +166,20 @@ Upload the public key to your EC2 region:
 ```bash
 aws ec2 import-key-pair --key-name "eksworkshop" --public-key-material file://~/.ssh/id_rsa.pub
 ```
+### Create an EKS cluster
+
+To create a basic EKS cluster, run:
+```
+eksctl create cluster --name=mythical-mysfits-eks --nodes=3 --node-ami=auto --full-ecr-access --region=${AWS_REGION}
+ ```
+{{% notice info %}}
+Launching EKS and all the dependencies will take approximately 15 minutes
+{{% /notice %}}
+
+Now that we have the key, let's launch the EKS Cluster.
+[source,shell]
+----
+eksctl create cluster  --name=mythicalmysfits
+----
+
+We will leave this process running, and get back to it later in the workshop. So let's open a new `terminal` by pressing the combination keys `alt+t`
