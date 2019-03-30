@@ -179,7 +179,9 @@ Launching EKS and all the dependencies will take approximately 15 minutes
 Now that we have the key, let's launch the EKS Cluster.
 [source,shell]
 ----
+```
 eksctl create cluster  --name=mythicalmysfits
+```
 ----
 
 We will leave this process running, and get back to it later in the workshop. So let's open a new `terminal` by pressing the combination keys `alt+t`
