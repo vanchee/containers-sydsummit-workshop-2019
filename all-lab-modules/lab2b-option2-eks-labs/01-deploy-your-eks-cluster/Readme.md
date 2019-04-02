@@ -182,5 +182,4 @@ eksctl create cluster --full-ecr-access --name=mythicalmysfits
 2018-08-27T21:37:31Z [✔]  created ServiceRole stack "EKS-mythicalmysfits-ServiceRole"
 2018-08-27T21:37:51Z [✔]  created VPC stack "EKS-mythicalmysfits-VPC"
 2018-08-27T21:37:51Z [ℹ]  creating control plane "mythicalmysfits"
-...
-
+....
