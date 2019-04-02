@@ -1,5 +1,6 @@
+EKS Cluster Setup (Follow only if you are an EKS lab user):
 ---
-title: "Create an IAM role for your Workspace"
+Create an IAM role for your Workspace
 ---
 1. Follow [this deep link to create an IAM role with Administrator access.](https://console.aws.amazon.com/iam/home#/roles$new?step=review&commonUseCase=EC2%2BEC2&selectedUseCase=EC2&policies=arn:aws:iam::aws:policy%2FAdministratorAccess)
 1. Confirm that **AWS service** and **EC2** are selected, then click **Next** to view permissions.
@@ -8,7 +9,7 @@ title: "Create an IAM role for your Workspace"
 ![createrole](/images/createrole.png)
 
 ---
-title: "Attach the IAM role to your Workspace"
+Attach the IAM role to your Workspace
 ---
 
 1. Follow [this deep link to find your Cloud9 EC2 instance](https://console.aws.amazon.com/ec2/v2/home?#Instances:tag:Name=aws-cloud9-eksworkshop*;sort=desc:launchTime)
@@ -19,7 +20,7 @@ title: "Attach the IAM role to your Workspace"
 
 
 ---
-title: "Update IAM settings for your Workspace"
+"Update IAM settings for your Workspace"
 ---
 
 {{% notice info %}}
@@ -143,7 +144,7 @@ aws-iam-authenticator help
 sudo yum -y install jq
 ```
 ---
-title: "Create an SSH key"
+"Create an SSH key"
 ---
 
 {{% notice info %}}
@@ -165,21 +166,22 @@ Upload the public key to your EC2 region:
 ```bash
 aws ec2 import-key-pair --key-name "eksworkshop" --public-key-material file://~/.ssh/id_rsa.pub
 ```
+### Create an EKS cluster
 
-title: "Launch an EKS Cluster"
-
+To create a basic EKS cluster, run:
 ```
-eksctl create cluster --full-ecr-access --name=mythicalmysfits
-```
+eksctl create cluster --name=mythical-mysfits-eks --nodes=3 --node-ami=auto --full-ecr-access --region=${AWS_REGION}
+ ```
+{{% notice info %}}
+Launching EKS and all the dependencies will take approximately 15 minutes
+{{% /notice %}}
 
-You can expect to see an output like the one below.
-eksctl create cluster --full-ecr-access --name=mythicalmysfits 
-2018-08-27T21:36:50Z [ℹ]  setting availability zones to [us-west-2c us-west-2b us-west-2a]
-2018-08-27T21:36:50Z [ℹ]  importing SSH public key "/home/ec2-user/.ssh/eks-key.pub" as "eksctl-mythicalmysfits-20:bc:c5:14:ab:c1:6b:92:10:e5:92:c0:2a:9e:07:37"
-2018-08-27T21:36:50Z [ℹ]  creating EKS cluster "mythicalmysfits" in "us-west-2" region
-2018-08-27T21:36:50Z [ℹ]  creating VPC stack "EKS-mythicalmysfits-VPC"
-2018-08-27T21:36:50Z [ℹ]  creating ServiceRole stack "EKS-mythicalmysfits-ServiceRole"
-2018-08-27T21:37:31Z [✔]  created ServiceRole stack "EKS-mythicalmysfits-ServiceRole"
-2018-08-27T21:37:51Z [✔]  created VPC stack "EKS-mythicalmysfits-VPC"
-2018-08-27T21:37:51Z [ℹ]  creating control plane "mythicalmysfits"
-....
+Now that we have the key, let's launch the EKS Cluster.
+[source,shell]
+----
+```
+eksctl create cluster  --name=mythicalmysfits
+```
+----
+
+We will leave this process running, and get back to it later in the workshop. So let's open a new `terminal` by pressing the combination keys `alt+t`
