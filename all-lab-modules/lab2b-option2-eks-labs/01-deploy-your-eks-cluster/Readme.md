@@ -165,3 +165,21 @@ Upload the public key to your EC2 region:
 ```bash
 aws ec2 import-key-pair --key-name "eksworkshop" --public-key-material file://~/.ssh/id_rsa.pub
 ```
+
+title: "Launch an EKS Cluster"
+
+```
+eksctl create cluster --full-ecr-access --name=petstore
+```
+
+You can expect to see an output like the one below.
+eksctl create cluster --full-ecr-access --name=petstore
+2018-08-27T21:36:50Z [ℹ]  setting availability zones to [us-west-2c us-west-2b us-west-2a]
+2018-08-27T21:36:50Z [ℹ]  importing SSH public key "/home/ec2-user/.ssh/eks-key.pub" as "eksctl-petstore-20:bc:c5:14:ab:c1:6b:92:10:e5:92:c0:2a:9e:07:37"
+2018-08-27T21:36:50Z [ℹ]  creating EKS cluster "petstore" in "us-west-2" region
+2018-08-27T21:36:50Z [ℹ]  creating VPC stack "EKS-petstore-VPC"
+2018-08-27T21:36:50Z [ℹ]  creating ServiceRole stack "EKS-petstore-ServiceRole"
+2018-08-27T21:37:31Z [✔]  created ServiceRole stack "EKS-petstore-ServiceRole"
+2018-08-27T21:37:51Z [✔]  created VPC stack "EKS-petstore-VPC"
+2018-08-27T21:37:51Z [ℹ]  creating control plane "petstore"
+...
