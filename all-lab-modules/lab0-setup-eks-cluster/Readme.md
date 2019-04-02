@@ -146,7 +146,6 @@ curl --silent --location "https://github.com/weaveworks/eksctl/releases/download
 
 sudo mv /tmp/eksctl /usr/local/bin
 
-sudo mv -v /tmp/eksctl /usr/local/bin
 ```
 
 Confirm the eksctl command works:
