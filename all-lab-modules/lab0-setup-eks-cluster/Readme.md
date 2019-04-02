@@ -138,9 +138,18 @@ kubectl version --short --client
 aws-iam-authenticator help
 ```
 
-#### Install JQ
+#### Install eksctl
+
+For this module, we need to download the [eksctl](https://eksctl.io/) binary:
 ```
-sudo yum -y install jq
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+
+sudo mv -v /tmp/eksctl /usr/local/bin
+```
+
+Confirm the eksctl command works:
+```
+eksctl version
 ```
 ---
 title: "Create an SSH key"
