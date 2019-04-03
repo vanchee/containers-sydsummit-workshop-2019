@@ -1,5 +1,5 @@
 ---
-title: "Create an IAM role for your Workspace"
+# "Create an IAM role for your Workspace"
 ---
 1. Follow [this deep link to create an IAM role with Administrator access.](https://console.aws.amazon.com/iam/home#/roles$new?step=review&commonUseCase=EC2%2BEC2&selectedUseCase=EC2&policies=arn:aws:iam::aws:policy%2FAdministratorAccess)
 1. Confirm that **AWS service** and **EC2** are selected, then click **Next** to view permissions.
@@ -11,7 +11,7 @@ title: "Create an IAM role for your Workspace"
 title: "Attach the IAM role to your Workspace"
 ---
 
-1. Follow [this deep link to find your Cloud9 EC2 instance](https://console.aws.amazon.com/ec2/v2/home?#Instances:tag:Name=aws-cloud9-eksworkshop*;sort=desc:launchTime)
+1. Follow [this deep link to find your Cloud9 EC2 instance](https://console.aws.amazon.com/ec2/v2/home?#Instances:tag:Name=aws-cloud9-Project-mythical-mysfits-fargate-*;sort=desc:launchTime)
 1. Select the instance, then choose **Actions / Instance Settings / Attach/Replace IAM Role**
 ![c9instancerole](/images/c9instancerole.png)
 1. Choose **eksworkshop-admin** from the **IAM Role** drop down, and select **Apply**
@@ -41,6 +41,7 @@ rm -vf ${HOME}/.aws/credentials
 
 - We should configure our aws cli with our current region as default:
 ```
+sudo yum install jq
 export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
 echo "export AWS_REGION=${AWS_REGION}" >> ~/.bash_profile
 aws configure set default.region ${AWS_REGION}
