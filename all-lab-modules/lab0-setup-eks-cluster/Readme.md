@@ -185,9 +185,10 @@ aws ec2 import-key-pair --key-name "eksworkshop" --public-key-material file://~/
 eksctl create cluster --full-ecr-access --name=mythicalmysfits
 ```
 
-```
+
 
 You can expect to see an output like the one below.
+```
 eksctl create cluster --full-ecr-access --name=mythicalmysfits
 2018-08-27T21:36:50Z [ℹ]  setting availability zones to [us-west-2c us-west-2b us-west-2a]
 2018-08-27T21:36:50Z [ℹ]  importing SSH public key "/home/ec2-user/.ssh/eks-key.pub" as "eksctl-mythicalmysfits-20:bc:c5:14:ab:c1:6b:92:10:e5:92:c0:2a:9e:07:37"
