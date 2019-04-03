@@ -1,5 +1,5 @@
 ---
-## "Create an IAM role for your Workspace"
+## Create an IAM role for your Workspace
 ---
 1. Follow [this deep link to create an IAM role with Administrator access.](https://console.aws.amazon.com/iam/home#/roles$new?step=review&commonUseCase=EC2%2BEC2&selectedUseCase=EC2&policies=arn:aws:iam::aws:policy%2FAdministratorAccess)
 1. Confirm that **AWS service** and **EC2** are selected, then click **Next** to view permissions.
@@ -8,7 +8,7 @@
 ![createrole](/images/createrole.png)
 
 ---
-## "Attach the IAM role to your Workspace"
+## Attach the IAM role to your Workspace
 ---
 
 1. Follow [this deep link to find your Cloud9 EC2 instance](https://console.aws.amazon.com/ec2/v2/home?#Instances:tag:Name=aws-cloud9-Project-mythical-mysfits-fargate-*;sort=desc:launchTime)
@@ -19,7 +19,7 @@
 
 
 ---
-## "Update IAM settings for your Workspace"
+## Update IAM settings for your Workspace
 ---
 
 {{% notice info %}}
@@ -104,7 +104,7 @@ If the _Arn contains `TeamRole`, `MasterRole`, or does not match the role name, 
 
 
 ---
-## "Install Kubernetes Tools"
+## Install Kubernetes Tools
 ---
 
 Amazon EKS clusters require kubectl and kubelet binaries and the aws-iam-authenticator
@@ -154,7 +154,7 @@ Confirm the eksctl command works:
 eksctl version
 ```
 ---
-## "Create an SSH key"
+## Create an SSH key
 ---
 
 {{% notice info %}}
@@ -178,11 +178,13 @@ aws ec2 import-key-pair --key-name "eksworkshop" --public-key-material file://~/
 ```
 
 ---
-## "Launch an EKS Cluster"
+## Launch an EKS Cluster
 ---
 
 ```
 eksctl create cluster --full-ecr-access --name=mythicalmysfits
+```
+
 ```
 
 You can expect to see an output like the one below.
@@ -196,3 +198,4 @@ eksctl create cluster --full-ecr-access --name=mythicalmysfits
 2018-08-27T21:37:51Z [✔]  created VPC stack "EKS-mythicalmysfits-VPC"
 2018-08-27T21:37:51Z [ℹ]  creating control plane "mythicalmysfits"
 ....
+```
