@@ -1,5 +1,5 @@
 ---
-title: "Create an IAM role for your Workspace"
+## Create an IAM role for your Workspace
 ---
 1. Follow [this deep link to create an IAM role with Administrator access.](https://console.aws.amazon.com/iam/home#/roles$new?step=review&commonUseCase=EC2%2BEC2&selectedUseCase=EC2&policies=arn:aws:iam::aws:policy%2FAdministratorAccess)
 1. Confirm that **AWS service** and **EC2** are selected, then click **Next** to view permissions.
@@ -8,10 +8,10 @@ title: "Create an IAM role for your Workspace"
 ![createrole](/images/createrole.png)
 
 ---
-title: "Attach the IAM role to your Workspace"
+## Attach the IAM role to your Workspace
 ---
 
-1. Follow [this deep link to find your Cloud9 EC2 instance](https://console.aws.amazon.com/ec2/v2/home?#Instances:tag:Name=aws-cloud9-eksworkshop*;sort=desc:launchTime)
+1. Follow [this deep link to find your Cloud9 EC2 instance](https://console.aws.amazon.com/ec2/v2/home?#Instances:tag:Name=aws-cloud9-Project-mythical-mysfits-fargate-*;sort=desc:launchTime)
 1. Select the instance, then choose **Actions / Instance Settings / Attach/Replace IAM Role**
 ![c9instancerole](/images/c9instancerole.png)
 1. Choose **eksworkshop-admin** from the **IAM Role** drop down, and select **Apply**
@@ -19,7 +19,7 @@ title: "Attach the IAM role to your Workspace"
 
 
 ---
-title: "Update IAM settings for your Workspace"
+## Update IAM settings for your Workspace
 ---
 
 {{% notice info %}}
@@ -41,6 +41,7 @@ rm -vf ${HOME}/.aws/credentials
 
 - We should configure our aws cli with our current region as default:
 ```
+sudo yum install jq
 export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
 echo "export AWS_REGION=${AWS_REGION}" >> ~/.bash_profile
 aws configure set default.region ${AWS_REGION}
@@ -103,7 +104,7 @@ If the _Arn contains `TeamRole`, `MasterRole`, or does not match the role name, 
 
 
 ---
-title: "Install Kubernetes Tools"
+## Install Kubernetes Tools
 ---
 
 Amazon EKS clusters require kubectl and kubelet binaries and the aws-iam-authenticator
@@ -153,7 +154,7 @@ Confirm the eksctl command works:
 eksctl version
 ```
 ---
-title: "Create an SSH key"
+## Create an SSH key
 ---
 
 {{% notice info %}}
@@ -177,14 +178,17 @@ aws ec2 import-key-pair --key-name "eksworkshop" --public-key-material file://~/
 ```
 
 ---
-title: "Launch an EKS Cluster"
+## Launch an EKS Cluster
 ---
 
 ```
 eksctl create cluster --full-ecr-access --name=mythicalmysfits
 ```
 
+
+
 You can expect to see an output like the one below.
+```
 eksctl create cluster --full-ecr-access --name=mythicalmysfits
 2018-08-27T21:36:50Z [ℹ]  setting availability zones to [us-west-2c us-west-2b us-west-2a]
 2018-08-27T21:36:50Z [ℹ]  importing SSH public key "/home/ec2-user/.ssh/eks-key.pub" as "eksctl-mythicalmysfits-20:bc:c5:14:ab:c1:6b:92:10:e5:92:c0:2a:9e:07:37"
@@ -195,3 +199,4 @@ eksctl create cluster --full-ecr-access --name=mythicalmysfits
 2018-08-27T21:37:51Z [✔]  created VPC stack "EKS-mythicalmysfits-VPC"
 2018-08-27T21:37:51Z [ℹ]  creating control plane "mythicalmysfits"
 ....
+```
