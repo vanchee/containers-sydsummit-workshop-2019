@@ -24,9 +24,9 @@ Parameters:
   #  AllowedPattern: '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
   #  Description: Enter a valid email address to be used for Kibana Cognito authentication.
 
-Metadata:
-  AWS::CloudFormation::Interface:
-    ParameterGroups:
+# Metadata:
+#   AWS::CloudFormation::Interface:
+#     ParameterGroups:
     #- Label:
     #    default: Elasticsearch Configuration
     #  Parameters:
