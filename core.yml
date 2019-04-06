@@ -47,9 +47,9 @@ Description: This stack deploys the core network infrastructure and IAM resource
     #  SkipBucket:
     #    default: Skip S3 bucket creation
 
-Conditions:
-  MakeBucket:
-    Fn::Equals: ["false", !Ref SkipBucket]
+# Conditions:
+#   MakeBucket:
+#     Fn::Equals: ["false", !Ref SkipBucket]
 
 Mappings:
   # Hard values for the subnet masks. These masks define
