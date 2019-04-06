@@ -3,13 +3,13 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: This stack deploys the core network infrastructure and IAM resources
              to be used for a service hosted in Amazon ECS using AWS Fargate and Amazon EKS.
 
-Parameters:
-  SkipBucket:
-    Type: String
-    Default: "false"
-    AllowedValues:
-      - "true"
-      - "false"
+# Parameters:
+#   SkipBucket:
+#     Type: String
+#     Default: "false"
+#     AllowedValues:
+#       - "true"
+#       - "false"
 
   # Name for ES Domain
   # DOMAINNAME:
