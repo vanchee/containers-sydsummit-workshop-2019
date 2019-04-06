@@ -12,40 +12,40 @@ Parameters:
       - "false"
 
   # Name for ES Domain
-  DOMAINNAME:
-    Description: Enter a name for the Amazon ES domain that this template will create. Domain names must start with a lowercase letter and must be between 3 and 28 characters. Valid characters are a-z (lowercase only), 0-9.
-    Type: String
-    Default: mythicalmysfits
+  # DOMAINNAME:
+  #  Description: Enter a name for the Amazon ES domain that this template will create. Domain names must start with a lowercase letter and must be between 3 and 28 characters. Valid characters are a-z (lowercase only), 0-9.
+  #  Type: String
+  #  Default: mythicalmysfits
 
   # Email address for Cognito Admin user
-  CognitoAdminEmail:
-    Type: String
-    Default: cognitoadmin@example.com
-    AllowedPattern: '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
-    Description: Enter a valid email address to be used for Kibana Cognito authentication.
+  #CognitoAdminEmail:
+  #  Type: String
+  #  Default: cognitoadmin@example.com
+  #  AllowedPattern: '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
+  #  Description: Enter a valid email address to be used for Kibana Cognito authentication.
 
 Metadata:
   AWS::CloudFormation::Interface:
     ParameterGroups:
-    - Label:
-        default: Elasticsearch Configuration
-      Parameters:
-      - DOMAINNAME
-    - Label:
-        default: Cognito Configuration
-      Parameters:
-      - CognitoAdminEmail
-    - Label:
-        default: S3 Configuration
-      Parameters:
-      - SkipBucket
-    ParameterLabels:
-      CognitoAdminEmail:
-        default: Enter a valid email address to be used for Kibana Cognito authentication. Do NOT leave this default value, it is there only as an example.
-      DOMAINNAME:
-        default: Enter a name for an Amazon Elasticsearch domain that this template will create. Domain names must start with a lowercase letter and must be between 3 and 28 characters. Valid characters are a-z (lowercase only), 0-9. You can leave this default value.
-      SkipBucket:
-        default: Skip S3 bucket creation
+    #- Label:
+    #    default: Elasticsearch Configuration
+    #  Parameters:
+    #  - DOMAINNAME
+    # - Label:
+    #    default: Cognito Configuration
+    #  Parameters:
+    #  - CognitoAdminEmail
+    # - Label:
+    #    default: S3 Configuration
+    #  Parameters:
+    #  - SkipBucket
+    # ParameterLabels:
+    #  CognitoAdminEmail:
+    #    default: Enter a valid email address to be used for Kibana Cognito authentication. Do NOT leave this default value, it is there only as an example.
+    #  DOMAINNAME:
+    #    default: Enter a name for an Amazon Elasticsearch domain that this template will create. Domain names must start with a lowercase letter and must be between 3 and 28 characters. Valid characters are a-z (lowercase only), 0-9. You can leave this default value.
+    #  SkipBucket:
+    #    default: Skip S3 bucket creation
 
 Conditions:
   MakeBucket:
@@ -859,157 +859,157 @@ Resources:
   # Cognito and IAM
   #
   # Creates a user pool in cognito to auth against
-  UserPool:
-    Type: 'AWS::Cognito::UserPool'
-    Properties:
-      UserPoolName: !Sub ${DOMAINNAME}_kibana_access
-      AutoVerifiedAttributes:
-        - email
-      MfaConfiguration: 'OFF'
-      EmailVerificationSubject: !Ref AWS::StackName
-      Schema:
-        - Name: name
-          AttributeDataType: String
-          Mutable: true
-          Required: true
-        - Name: email
-          AttributeDataType: String
-          Mutable: false
-          Required: true
+  # UserPool:
+  #   Type: 'AWS::Cognito::UserPool'
+  #   Properties:
+  #     UserPoolName: !Sub ${DOMAINNAME}_kibana_access
+  #     AutoVerifiedAttributes:
+  #       - email
+  #     MfaConfiguration: 'OFF'
+  #     EmailVerificationSubject: !Ref AWS::StackName
+  #     Schema:
+  #       - Name: name
+  #         AttributeDataType: String
+  #         Mutable: true
+  #         Required: true
+  #       - Name: email
+  #         AttributeDataType: String
+  #         Mutable: false
+  #         Required: true
 
-  # Creates a needed group in Cognito for Kibana access
-  UserPoolGroup:
-    Type: "AWS::Cognito::UserPoolGroup"
-    Properties:
-      Description: 'User pool group for Kibana access'
-      GroupName: !Sub ${DOMAINNAME}_kibana_access_group
-      Precedence: 0
-      UserPoolId: !Ref UserPool
+  # # Creates a needed group in Cognito for Kibana access
+  # UserPoolGroup:
+  #   Type: "AWS::Cognito::UserPoolGroup"
+  #   Properties:
+  #     Description: 'User pool group for Kibana access'
+  #     GroupName: !Sub ${DOMAINNAME}_kibana_access_group
+  #     Precedence: 0
+  #     UserPoolId: !Ref UserPool
 
-  # Creates a User Pool Client to be used by the identity pool
-  UserPoolClient:
-    Type: 'AWS::Cognito::UserPoolClient'
-    Properties:
-      ClientName: !Sub ${DOMAINNAME}-client
-      GenerateSecret: false
-      UserPoolId: !Ref UserPool
+  # # Creates a User Pool Client to be used by the identity pool
+  # UserPoolClient:
+  #   Type: 'AWS::Cognito::UserPoolClient'
+  #   Properties:
+  #     ClientName: !Sub ${DOMAINNAME}-client
+  #     GenerateSecret: false
+  #     UserPoolId: !Ref UserPool
 
-  # Creates a federated Identity pool
-  IdentityPool:
-    Type: 'AWS::Cognito::IdentityPool'
-    Properties:
-      IdentityPoolName: !Sub ${DOMAINNAME}Identity
-      AllowUnauthenticatedIdentities: true
-      CognitoIdentityProviders:
-        - ClientId: !Ref UserPoolClient
-          ProviderName: !GetAtt UserPool.ProviderName
+  # # Creates a federated Identity pool
+  # IdentityPool:
+  #   Type: 'AWS::Cognito::IdentityPool'
+  #   Properties:
+  #     IdentityPoolName: !Sub ${DOMAINNAME}Identity
+  #     AllowUnauthenticatedIdentities: true
+  #     CognitoIdentityProviders:
+  #       - ClientId: !Ref UserPoolClient
+  #         ProviderName: !GetAtt UserPool.ProviderName
 
-  # Create a role for unauthorized access to AWS resources. Very limited access.
-  # Only allows users in the previously created Identity Pool
-  CognitoUnAuthorizedRole:
-    Type: 'AWS::IAM::Role'
-    Properties:
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: 'Allow'
-            Principal:
-              Federated: 'cognito-identity.amazonaws.com'
-            Action:
-              - 'sts:AssumeRoleWithWebIdentity'
-            Condition:
-              StringEquals:
-                'cognito-identity.amazonaws.com:aud': !Ref IdentityPool
-              'ForAnyValue:StringLike':
-                'cognito-identity.amazonaws.com:amr': unauthenticated
-      Policies:
-        - PolicyName: 'CognitoUnauthorizedPolicy'
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-              - Effect: 'Allow'
-                Action:
-                  - 'mobileanalytics:PutEvents'
-                  - 'cognito-sync:BulkPublish'
-                  - 'cognito-sync:DescribeIdentityPoolUsage'
-                  - 'cognito-sync:GetBulkPublishDetails'
-                  - 'cognito-sync:GetCognitoEvents'
-                  - 'cognito-sync:GetIdentityPoolConfiguration'
-                  - 'cognito-sync:ListIdentityPoolUsage'
-                  - 'cognito-sync:SetCognitoEvents'
-                  - 'congito-sync:SetIdentityPoolConfiguration'
-                Resource: !Sub 'arn:aws:cognito-identity:${AWS::Region}:${AWS::AccountId}:identitypool/${IdentityPool}'
+  # # Create a role for unauthorized access to AWS resources. Very limited access.
+  # # Only allows users in the previously created Identity Pool
+  # CognitoUnAuthorizedRole:
+  #   Type: 'AWS::IAM::Role'
+  #   Properties:
+  #     AssumeRolePolicyDocument:
+  #       Version: '2012-10-17'
+  #       Statement:
+  #         - Effect: 'Allow'
+  #           Principal:
+  #             Federated: 'cognito-identity.amazonaws.com'
+  #           Action:
+  #             - 'sts:AssumeRoleWithWebIdentity'
+  #           Condition:
+  #             StringEquals:
+  #               'cognito-identity.amazonaws.com:aud': !Ref IdentityPool
+  #             'ForAnyValue:StringLike':
+  #               'cognito-identity.amazonaws.com:amr': unauthenticated
+  #     Policies:
+  #       - PolicyName: 'CognitoUnauthorizedPolicy'
+  #         PolicyDocument:
+  #           Version: '2012-10-17'
+  #           Statement:
+  #             - Effect: 'Allow'
+  #               Action:
+  #                 - 'mobileanalytics:PutEvents'
+  #                 - 'cognito-sync:BulkPublish'
+  #                 - 'cognito-sync:DescribeIdentityPoolUsage'
+  #                 - 'cognito-sync:GetBulkPublishDetails'
+  #                 - 'cognito-sync:GetCognitoEvents'
+  #                 - 'cognito-sync:GetIdentityPoolConfiguration'
+  #                 - 'cognito-sync:ListIdentityPoolUsage'
+  #                 - 'cognito-sync:SetCognitoEvents'
+  #                 - 'congito-sync:SetIdentityPoolConfiguration'
+  #               Resource: !Sub 'arn:aws:cognito-identity:${AWS::Region}:${AWS::AccountId}:identitypool/${IdentityPool}'
 
-  # Create a role for authorized access to AWS resources.
-  # Only allows users in the previously created Identity Pool
-  CognitoAuthorizedRole:
-    Type: 'AWS::IAM::Role'
-    Properties:
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: 'Allow'
-            Principal:
-              Federated: 'cognito-identity.amazonaws.com'
-            Action:
-              - 'sts:AssumeRoleWithWebIdentity'
-            Condition:
-              StringEquals:
-                'cognito-identity.amazonaws.com:aud': !Ref IdentityPool
-              'ForAnyValue:StringLike':
-                'cognito-identity.amazonaws.com:amr': authenticated
-      Policies:
-        - PolicyName: 'CognitoAuthorizedPolicy'
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-              - Effect: 'Allow'
-                Action:
-                  - 'mobileanalytics:PutEvents'
-                  - 'cognito-sync:BulkPublish'
-                  - 'cognito-sync:DescribeIdentityPoolUsage'
-                  - 'cognito-sync:GetBulkPublishDetails'
-                  - 'cognito-sync:GetCognitoEvents'
-                  - 'cognito-sync:GetIdentityPoolConfiguration'
-                  - 'cognito-sync:ListIdentityPoolUsage'
-                  - 'cognito-sync:SetCognitoEvents'
-                  - 'congito-sync:SetIdentityPoolConfiguration'
-                  - 'cognito-identity:DeleteIdentityPool'
-                  - 'cognito-identity:DescribeIdentityPool'
-                  - 'cognito-identity:GetIdentityPoolRoles'
-                  - 'cognito-identity:GetOpenIdTokenForDeveloperIdentity'
-                  - 'cognito-identity:ListIdentities'
-                  - 'cognito-identity:LookupDeveloperIdentity'
-                  - 'cognito-identity:MergeDeveloperIdentities'
-                  - 'cognito-identity:UnlikeDeveloperIdentity'
-                  - 'cognito-identity:UpdateIdentityPool'
-                Resource: !Sub 'arn:aws:cognito-identity:${AWS::Region}:${AWS::AccountId}:identitypool/${IdentityPool}'
+  # # Create a role for authorized access to AWS resources.
+  # # Only allows users in the previously created Identity Pool
+  # CognitoAuthorizedRole:
+  #   Type: 'AWS::IAM::Role'
+  #   Properties:
+  #     AssumeRolePolicyDocument:
+  #       Version: '2012-10-17'
+  #       Statement:
+  #         - Effect: 'Allow'
+  #           Principal:
+  #             Federated: 'cognito-identity.amazonaws.com'
+  #           Action:
+  #             - 'sts:AssumeRoleWithWebIdentity'
+  #           Condition:
+  #             StringEquals:
+  #               'cognito-identity.amazonaws.com:aud': !Ref IdentityPool
+  #             'ForAnyValue:StringLike':
+  #               'cognito-identity.amazonaws.com:amr': authenticated
+  #     Policies:
+  #       - PolicyName: 'CognitoAuthorizedPolicy'
+  #         PolicyDocument:
+  #           Version: '2012-10-17'
+  #           Statement:
+  #             - Effect: 'Allow'
+  #               Action:
+  #                 - 'mobileanalytics:PutEvents'
+  #                 - 'cognito-sync:BulkPublish'
+  #                 - 'cognito-sync:DescribeIdentityPoolUsage'
+  #                 - 'cognito-sync:GetBulkPublishDetails'
+  #                 - 'cognito-sync:GetCognitoEvents'
+  #                 - 'cognito-sync:GetIdentityPoolConfiguration'
+  #                 - 'cognito-sync:ListIdentityPoolUsage'
+  #                 - 'cognito-sync:SetCognitoEvents'
+  #                 - 'congito-sync:SetIdentityPoolConfiguration'
+  #                 - 'cognito-identity:DeleteIdentityPool'
+  #                 - 'cognito-identity:DescribeIdentityPool'
+  #                 - 'cognito-identity:GetIdentityPoolRoles'
+  #                 - 'cognito-identity:GetOpenIdTokenForDeveloperIdentity'
+  #                 - 'cognito-identity:ListIdentities'
+  #                 - 'cognito-identity:LookupDeveloperIdentity'
+  #                 - 'cognito-identity:MergeDeveloperIdentities'
+  #                 - 'cognito-identity:UnlikeDeveloperIdentity'
+  #                 - 'cognito-identity:UpdateIdentityPool'
+  #               Resource: !Sub 'arn:aws:cognito-identity:${AWS::Region}:${AWS::AccountId}:identitypool/${IdentityPool}'
 
-  CognitoESAccessRole:
-    Type: 'AWS::IAM::Role'
-    Properties:
-      ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/AmazonESCognitoAccess
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: 'Allow'
-            Principal:
-              Service: 'es.amazonaws.com'
-            Action:
-              - 'sts:AssumeRole'
+  # CognitoESAccessRole:
+  #   Type: 'AWS::IAM::Role'
+  #   Properties:
+  #     ManagedPolicyArns:
+  #       - arn:aws:iam::aws:policy/AmazonESCognitoAccess
+  #     AssumeRolePolicyDocument:
+  #       Version: '2012-10-17'
+  #       Statement:
+  #         - Effect: 'Allow'
+  #           Principal:
+  #             Service: 'es.amazonaws.com'
+  #           Action:
+  #             - 'sts:AssumeRole'
 
-  MisfitsECSAutoScaleRole:
-    Type: AWS::IAM::Role
-    Properties:
-      AssumeRolePolicyDocument:
-        Statement:
-        - Action: sts:AssumeRole
-          Effect: Allow
-          Principal:
-            Service: application-autoscaling.amazonaws.com
-      ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceAutoscaleRole
+  # MisfitsECSAutoScaleRole:
+  #   Type: AWS::IAM::Role
+  #   Properties:
+  #     AssumeRolePolicyDocument:
+  #       Statement:
+  #       - Action: sts:AssumeRole
+  #         Effect: Allow
+  #         Principal:
+  #           Service: application-autoscaling.amazonaws.com
+  #     ManagedPolicyArns:
+  #       - arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceAutoscaleRole
 
   LikeScaleDownAlarm:
     Type: AWS::CloudWatch::Alarm
@@ -1045,89 +1045,89 @@ Resources:
       - Name: TargetGroup
         Value: !GetAtt [MythicalLikeTargetGroup, TargetGroupFullName]
 
-  # Assigns the roles to the Identity Pool
-  IdentityPoolRoleMapping:
-    Type: 'AWS::Cognito::IdentityPoolRoleAttachment'
-    Properties:
-      IdentityPoolId: !Ref IdentityPool
-      Roles:
-        authenticated: !GetAtt CognitoAuthorizedRole.Arn
-        unauthenticated: !GetAtt CognitoUnAuthorizedRole.Arn
+  # # Assigns the roles to the Identity Pool
+  # IdentityPoolRoleMapping:
+  #   Type: 'AWS::Cognito::IdentityPoolRoleAttachment'
+  #   Properties:
+  #     IdentityPoolId: !Ref IdentityPool
+  #     Roles:
+  #       authenticated: !GetAtt CognitoAuthorizedRole.Arn
+  #       unauthenticated: !GetAtt CognitoUnAuthorizedRole.Arn
 
-  AdminUser:
-    Type: 'AWS::Cognito::UserPoolUser'
-    Properties:
-      DesiredDeliveryMediums:
-        - 'EMAIL'
-      UserAttributes:
-        - Name: email
-          Value: !Ref CognitoAdminEmail
-      Username: !Ref CognitoAdminEmail
-      UserPoolId: !Ref UserPool
+  # AdminUser:
+  #   Type: 'AWS::Cognito::UserPoolUser'
+  #   Properties:
+  #     DesiredDeliveryMediums:
+  #       - 'EMAIL'
+  #     UserAttributes:
+  #       - Name: email
+  #         Value: !Ref CognitoAdminEmail
+  #     Username: !Ref CognitoAdminEmail
+  #     UserPoolId: !Ref UserPool
 
-  #
-  # Primer Elasticsearch resources
-  # [LoggingMasterRole, LoggingMasterPolicies, ElasticsearchAWSLogs]
-  #
-  LoggingMasterRole:
-    Type: AWS::IAM::Role
-    Properties:
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-        - Effect: Allow
-          Principal:
-            Service: lambda.amazonaws.com
-          Action:
-          - sts:AssumeRole
-      Path: "/"
+  # #
+  # # Primer Elasticsearch resources
+  # # [LoggingMasterRole, LoggingMasterPolicies, ElasticsearchAWSLogs]
+  # #
+  # LoggingMasterRole:
+  #   Type: AWS::IAM::Role
+  #   Properties:
+  #     AssumeRolePolicyDocument:
+  #       Version: '2012-10-17'
+  #       Statement:
+  #       - Effect: Allow
+  #         Principal:
+  #           Service: lambda.amazonaws.com
+  #         Action:
+  #         - sts:AssumeRole
+  #     Path: "/"
 
-  LoggingMasterPolicies:
-    Type: AWS::IAM::Policy
-    Properties:
-      PolicyName: !Sub logging-master-${AWS::Region}
-      PolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-        - Effect: Allow
-          Action:
-          - es:ESHttpPost
-          Resource: !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/*
-      Roles:
-      - !Ref LoggingMasterRole
+  # LoggingMasterPolicies:
+  #   Type: AWS::IAM::Policy
+  #   Properties:
+  #     PolicyName: !Sub logging-master-${AWS::Region}
+  #     PolicyDocument:
+  #       Version: '2012-10-17'
+  #       Statement:
+  #       - Effect: Allow
+  #         Action:
+  #         - es:ESHttpPost
+  #         Resource: !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/*
+  #     Roles:
+  #     - !Ref LoggingMasterRole
 
-  MythicalElasticsearch:
-    Type: AWS::Elasticsearch::Domain
-    Properties:
-      DomainName: !Ref DOMAINNAME
-      ElasticsearchVersion: 6.3
-      ElasticsearchClusterConfig:
-        InstanceCount: 1
-        InstanceType: m4.large.elasticsearch
-      EBSOptions:
-        EBSEnabled: true
-        VolumeSize: 10
-        VolumeType: gp2
-      AccessPolicies:
-        Version: 2012-10-17
-        Statement:
-        - Action: 'es:*'
-          Principal:
-            AWS: !Sub ${LoggingMasterRole.Arn}
-          Effect: Allow
-          Resource: !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/* #removing domain name due to cyclic dependency
-        - Action: 'es:*'
-          Principal:
-            AWS: !Sub
-              - arn:aws:sts::${AWS::AccountId}:assumed-role/${AuthRole}/CognitoIdentityCredentials
-              - { AuthRole: !Ref CognitoAuthorizedRole }
-          Effect: Allow
-          Resource: !Sub 'arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${DOMAINNAME}/*'
-      # V57095985 - 10/08/2018 - ES Domain needed configurations
-      # https://github.com/awslabs/aws-centralized-logging/issues/2
-      AdvancedOptions:
-        rest.action.multi.allow_explicit_index: 'true'
-        indices.fielddata.cache.size: 40
+  # MythicalElasticsearch:
+  #   Type: AWS::Elasticsearch::Domain
+  #   Properties:
+  #     DomainName: !Ref DOMAINNAME
+  #     ElasticsearchVersion: 6.3
+  #     ElasticsearchClusterConfig:
+  #       InstanceCount: 1
+  #       InstanceType: m4.large.elasticsearch
+  #     EBSOptions:
+  #       EBSEnabled: true
+  #       VolumeSize: 10
+  #       VolumeType: gp2
+  #     AccessPolicies:
+  #       Version: 2012-10-17
+  #       Statement:
+  #       - Action: 'es:*'
+  #         Principal:
+  #           AWS: !Sub ${LoggingMasterRole.Arn}
+  #         Effect: Allow
+  #         Resource: !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/* #removing domain name due to cyclic dependency
+  #       - Action: 'es:*'
+  #         Principal:
+  #           AWS: !Sub
+  #             - arn:aws:sts::${AWS::AccountId}:assumed-role/${AuthRole}/CognitoIdentityCredentials
+  #             - { AuthRole: !Ref CognitoAuthorizedRole }
+  #         Effect: Allow
+  #         Resource: !Sub 'arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${DOMAINNAME}/*'
+  #     # V57095985 - 10/08/2018 - ES Domain needed configurations
+  #     # https://github.com/awslabs/aws-centralized-logging/issues/2
+  #     AdvancedOptions:
+  #       rest.action.multi.allow_explicit_index: 'true'
+  #       indices.fielddata.cache.size: 40
 
 
 Outputs:
@@ -1179,12 +1179,12 @@ Outputs:
   S3WebsiteEndpoint:
     Value: !GetAtt MythicalBucket.WebsiteURL
     Condition: MakeBucket
-  ESDomainEndpoint:
-    Description: ES domain endpoint URL
-    Value: !Sub https://${MythicalElasticsearch.DomainEndpoint}
-  KibanaLoginURL:
-    Description: Kibana login URL
-    Value: !Sub https://${MythicalElasticsearch.DomainEndpoint}/_plugin/kibana/
-  CWLLambdaExecRole:
-    Description: IAM role for ES cross account access
-    Value: !Sub ${LoggingMasterRole.Arn}
+  # ESDomainEndpoint:
+  #   Description: ES domain endpoint URL
+  #   Value: !Sub https://${MythicalElasticsearch.DomainEndpoint}
+  # KibanaLoginURL:
+  #   Description: Kibana login URL
+  #   Value: !Sub https://${MythicalElasticsearch.DomainEndpoint}/_plugin/kibana/
+  # CWLLambdaExecRole:
+  #   Description: IAM role for ES cross account access
+  #   Value: !Sub ${LoggingMasterRole.Arn}
