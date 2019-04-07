@@ -121,8 +121,8 @@ On the **Create build project** page, enter in the following details:
 - Runtime version: Select **aws/codebuild/docker:17.09.0** - *This will default to the latest*
 - Image version: **Leave as is**
 - Privileged: **Leave as is** - *You can't actually change anything here. In order for to run Docker inside a Docker container, you need to have elevated privileges*
-- Service role: **Existing service role** - *A service role was automatically created for you via CFN*
-- Role name: Choose **CFNStackName-CodeBuildServiceRole** - *Look for the service role that has the name of the CFN stack you created previously*
+- Service role: **New service role** - *A service role was automatically created for you via CFN*
+- Role name: Choose New service role **New service role** that has the name of the CFN stack you created previously*
 - Uncheck **Allow AWS CodeBuild to modify this service role so it can be used with this build project**
 
 ![CodeBuild Create Project Part 1](images/cb-create-project-1.png)
