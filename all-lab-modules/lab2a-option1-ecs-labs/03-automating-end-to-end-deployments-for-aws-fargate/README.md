@@ -137,6 +137,7 @@ Expand the **Additional Information** and enter the following in Environment Var
 - Build Specification: Select **Use a buildspec file** - *We are going to provide CodeBuild with a buildspec file*
 - Buildspec name: Enter `buildspec_dev.yml` - *we'll be using the same repo, but different buildspecs*
 
+
 **Artifacts:**
 
 - Type: Select **No artifacts** *If there are any build outputs that need to be stored, you can choose to put them in S3.*
