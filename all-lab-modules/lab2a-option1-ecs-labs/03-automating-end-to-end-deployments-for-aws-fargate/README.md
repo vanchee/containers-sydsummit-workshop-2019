@@ -107,7 +107,7 @@ We will be using AWS CodeBuild to offload the builds from the local Cloud9 insta
 
 On the **Create build project** page, enter in the following details:
 
-- Project Name: Enter `dev-like-service-build`
+- Project Name: Enter `prod-like-service-build`
 - Source Provider: Select **AWS CodeCommit**
 - Repository: Choose the repo from the CloudFormation stack that looks like StackName-**like-service**
 
