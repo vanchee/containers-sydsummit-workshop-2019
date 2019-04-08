@@ -21,15 +21,17 @@ That's why we've hired you to be our first Full Stack Engineer. We need a more s
 ### Building your docker image
 
 * Step1 : [Setting up the workshop environment (Cloud9)](https://github.com/vanchee/containers-sydsummit-workshop-2019/blob/master/all-lab-modules/lab0-setting-up-environment/READ.md)   
-  * Step1(a) (Applies ONLY for EKS users) : [Trigger clusters creation for EKS](https://github.com/vanchee/containers-sydsummit-workshop-2019/tree/master/all-lab-modules/lab0-setup-eks-cluster)        
+
 * Step2 : [Build your Docker image and push it to container repository (ECR)](https://github.com/vanchee/containers-sydsummit-workshop-2019/tree/master/all-lab-modules/lab1-building-docker-image)       
 
-
- * Step3 : Deploy on ECS(with Fargate)   
+* Step3 : Deploy on ECS(with Fargate)   
  
- * Step4 : [deploy-your-container-to-ecs-fargate-cluster](https://github.com/vanchee/containers-sydsummit-workshop-2019/blob/master/all-lab-modules/lab2a-option1-ecs-labs/01-deploy-your-ecs-fargate-cluster/READ.md)     
- * Step5 : [breaking-monolith-image-ecs](https://github.com/vanchee/containers-sydsummit-workshop-2019/blob/master/all-lab-modules/lab2a-option1-ecs-labs/02-breaking-monolith-image-ecs/README.md)     
- * Step6 : [automating-end-to-end-deployments-for-aws-fargate](https://github.com/vanchee/containers-sydsummit-workshop-2019/tree/master/all-lab-modules/lab2a-option1-ecs-labs/03-automating-end-to-end-deployments-for-aws-fargate)      
+* Step4 : [deploy-your-container-to-ecs-fargate-cluster](https://github.com/vanchee/containers-sydsummit-workshop-2019/blob/master/all-lab-modules/lab2a-option1-ecs-labs/01-deploy-your-ecs-fargate-cluster/READ.md)     
+
+* Step5 : [breaking-monolith-image-ecs](https://github.com/vanchee/containers-sydsummit-workshop-2019/blob/master/all-lab-modules/lab2a-option1-ecs-labs/02-breaking-monolith-image-ecs/README.md)       
+
+ * Step6 : [automating-end-to-end-deployments-for-aws-fargate](https://github.com/vanchee/containers-sydsummit-workshop-2019/tree/master/all-lab-modules/lab2a-option1-ecs-labs/03-automating-end-to-end-deployments-for-aws-fargate)    
+ 
  * Step7 : [log analysis with cloudwatch logs and elasticsearch]()    
             
 ### ECS Learning Path
