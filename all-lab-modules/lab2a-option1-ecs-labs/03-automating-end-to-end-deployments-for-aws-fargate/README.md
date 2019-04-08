@@ -283,29 +283,14 @@ Replace the container name with the name of your service, which should be `like-
 
 2\. Check in and push to dev
 
-Add, commit, and push the new file to your repo. You can try to build the app again, but CodeBuild will just do the same thing because it's still looking at buildspec_dev.yml.
+Add, commit, and push the new file to your repo. You can try to build the app again, but CodeBuild will just do the same thing because it's still looking at buildspec_prod.yml.
 
 <pre>
   $ git add buildspec_prod.yml
   $ git commit -m "Adding a buildspec for prod"
-  $ git push origin dev
+  $ git push origin prod
 </pre>
 
-3\. Merge into master branch
-
-Now that we're ready with all the code let's merge with our master branch. The master branch is what we're going to use to trigger all CodePipeline deployments
-
-First switch back to your master branch:
-<pre>
-  $ git checkout master
-</pre>
-
-Next, merge in all your changes:
-
-<pre>
-  $ git merge dev
-  $ git push origin master
-</pre>
 
 ### Create Pipeline for deployments
 
