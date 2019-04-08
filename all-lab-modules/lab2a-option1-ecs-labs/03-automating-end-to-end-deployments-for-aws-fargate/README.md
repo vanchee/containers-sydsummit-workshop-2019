@@ -291,25 +291,6 @@ Add, commit, and push the new file to your repo. You can try to build the app ag
   $ git push origin prod
 </pre>
 
-<<<<<<< HEAD
-3\. Merge into master branch
-
-Now that we're ready with all the code let's merge with our master branch. The master branch is what we're going to use to trigger all CodePipeline deployments
-
-First switch back to your master branch:
-<pre>
-  $ git checkout master
-</pre>
-
-Next, merge in all your changes:
-
-<pre>
-  $ git merge prod
-  $ git push origin master
-</pre>
-=======
->>>>>>> 27d2caa7afb5f031f2395ef59b34ebb63bc0a77f
-
 ### Create Pipeline for deployments
 
 1\. Create an AWS CodePipeline Pipeline and set it up to listen to AWS CodeCommit.
