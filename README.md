@@ -25,16 +25,13 @@ That's why we've hired you to be our first Full Stack Engineer. We need a more s
 * Step2 : [Build your Docker image and push it to container repository (ECR)](https://github.com/vanchee/containers-sydsummit-workshop-2019/tree/master/all-lab-modules/lab1-building-docker-image)       
 
 
- * Step3a : Deploy on ECS(with Fargate)   
-   * Step 3a.1 : [deploy-your-container-to-ecs-fargate-cluster](https://github.com/vanchee/containers-sydsummit-workshop-2019/blob/master/all-lab-modules/lab2a-option1-ecs-labs/01-deploy-your-ecs-fargate-cluster/READ.md)     
-   * Step 3a.2 : [breaking-monolith-image-ecs](https://github.com/vanchee/containers-sydsummit-workshop-2019/blob/master/all-lab-modules/lab2a-option1-ecs-labs/02-breaking-monolith-image-ecs/README.md)     
-   * Step 3a.3 : [automating-end-to-end-deployments-for-aws-fargate](https://github.com/vanchee/containers-sydsummit-workshop-2019/tree/master/all-lab-modules/lab2a-option1-ecs-labs/03-automating-end-to-end-deployments-for-aws-fargate)      
-   * Step 3a.4 : [log analysis with cloudwatch logs and elasticsearch]()    
-            
- or      
+ * Step3 : Deploy on ECS(with Fargate)   
  
- * Step3b : Deploy on EKS 
-
+ * Step4 : [deploy-your-container-to-ecs-fargate-cluster](https://github.com/vanchee/containers-sydsummit-workshop-2019/blob/master/all-lab-modules/lab2a-option1-ecs-labs/01-deploy-your-ecs-fargate-cluster/READ.md)     
+ * Step5 : [breaking-monolith-image-ecs](https://github.com/vanchee/containers-sydsummit-workshop-2019/blob/master/all-lab-modules/lab2a-option1-ecs-labs/02-breaking-monolith-image-ecs/README.md)     
+ * Step6 : [automating-end-to-end-deployments-for-aws-fargate](https://github.com/vanchee/containers-sydsummit-workshop-2019/tree/master/all-lab-modules/lab2a-option1-ecs-labs/03-automating-end-to-end-deployments-for-aws-fargate)      
+ * Step7 : [log analysis with cloudwatch logs and elasticsearch]()    
+            
 ### ECS Learning Path
 
 You will learn,
@@ -45,10 +42,5 @@ You will learn,
             * CI/CD Pipeline for ECS 
 
 ### EKS Learning Path
-You will learn,
-  
-            * Configure EKS Cluster, provisoning worker nodes  
-            * Splitiing monolith into microservices, leveraging ALB   
-            * Logging & Monitoring with 
-            * CI/CD Pipeline for EKS
+Checkout ---> [https://github.com/kmhabib/containers-sydsummit-eks-workshop-2019/tree/master/amazon-ecs-mythicalmysfits-workshop/workshop-1]
 
