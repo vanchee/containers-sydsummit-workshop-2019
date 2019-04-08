@@ -1,5 +1,15 @@
 # Mythical Mysfits: DevSecOps with Docker and AWS Fargate
 
+## Lab - Automating End to End Deployments for AWS Fargate for production environments
+
+In this lab, you will implement the end to end deployment and testing process for your like service. This lab is where it all comes together. By the end, you will be able to check in new code and have your application automatically updated.
+
+Here's what you'll be doing:
+
+* Create new buildspec for production environments
+* Create Pipeline for deployments
+* Deploy new version of Project Cuddle
+
 1\. Configure Git credentials
 
 Since most of the labs are going to be using git, let's set up our permissions now. There are a number of ways to authenticate with git repositories, and specifically CodeCommit in this case, but for the sake of simplicity, we'll use the CodeCommit credential helper here. Enter the following commands to configure git to access CodeCommit.
@@ -107,7 +117,7 @@ We will be using AWS CodeBuild to offload the builds from the local Cloud9 insta
 
 On the **Create build project** page, enter in the following details:
 
-- Project Name: Enter `dev-like-service-build`
+- Project Name: Enter `prod-like-service-build`
 - Source Provider: Select **AWS CodeCommit**
 - Repository: Choose the repo from the CloudFormation stack that looks like StackName-**like-service**
 
@@ -135,7 +145,7 @@ Expand the **Additional Information** and enter the following in Environment Var
 **Buildspec:**
 
 - Build Specification: Select **Use a buildspec file** - *We are going to provide CodeBuild with a buildspec file*
-- Buildspec name: Enter `buildspec_dev.yml` - *we'll be using the same repo, but different buildspecs*
+- Buildspec name: Enter `buildspec_prod.yml` - *we'll be using the same repo, but different buildspecs*
 
 
 **Artifacts:**
@@ -232,17 +242,7 @@ When we created the buildspec_dev.yml file, we used CODEBUILD_RESOLVED_SOURCE_VE
 
 </details>
 
-## Lab - Automating End to End Deployments for AWS Fargate for production environments
-
-In this lab, you will implement the end to end deployment and testing process for your like service. This lab is where it all comes together. By the end, you will be able to check in new code and have your application automatically updated.
-
-Here's what you'll be doing:
-
-* Create new buildspec and merge feature branch
-* Create Pipeline for deployments
-* Deploy new version of Project Cuddle
-
-### Create new buildspec and merge feature branch
+### Create new buildspec for prod environments
 
 1\. Create the buildspec_prod.yml file
 
@@ -288,7 +288,7 @@ Add, commit, and push the new file to your repo. You can try to build the app ag
 <pre>
   $ git add buildspec_prod.yml
   $ git commit -m "Adding a buildspec for prod"
-  $ git push origin dev
+  $ git push origin prod
 </pre>
 
 3\. Merge into master branch
@@ -303,7 +303,7 @@ First switch back to your master branch:
 Next, merge in all your changes:
 
 <pre>
-  $ git merge dev
+  $ git merge prod
   $ git push origin master
 </pre>
 
