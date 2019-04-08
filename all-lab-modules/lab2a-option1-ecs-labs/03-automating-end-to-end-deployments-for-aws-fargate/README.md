@@ -1,4 +1,4 @@
-# Mythical Mysfits: DevSecOps with Docker and AWS Fargate
+# Mythical Mysfits: DevOps with Docker and AWS Fargate
 
 ## Lab - Automating End to End Deployments for AWS Fargate for production environments
 
