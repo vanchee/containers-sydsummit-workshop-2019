@@ -244,7 +244,7 @@ When we created the buildspec_dev.yml file, we used CODEBUILD_RESOLVED_SOURCE_VE
 
 </details>
 
-## Lab - Automating End to End Deployments for AWS Fargate
+## Lab - Automating End to End Deployments for AWS Fargate for production environments
 
 In this lab, you will implement the end to end deployment and testing process for your like service. This lab is where it all comes together. By the end, you will be able to check in new code and have your application automatically updated.
 
@@ -258,11 +258,11 @@ Here's what you'll be doing:
 
 1\. Create the buildspec_prod.yml file
 
-In Lab 2, we created a buildspec for dev named buildspec_dev. That was used when CodeBuild was run directly on source code in CodeCommit, but now for production we want to build a full pipeline that will automatically deploy our environment, so we'll use CodePipeline to orchestrate that.
+In the above section, we created a buildspec for dev named buildspec_dev. That was used when CodeBuild was run directly on source code in CodeCommit, but now for production we want to build a full pipeline that will automatically deploy our environment, so we'll use CodePipeline to orchestrate that.
 
 Ideally, we want to keep production and development branches as similar as possible, but want to control differences between dev and prod build stages. To start, we can basically copy over what we created for Lab 2, but there will be a few minor changes. We will name the new buildspec buildspec_prod.yml instead of buildspec_dev.yml.
 
-Make sure you're in the like repository folder, which should be named something like **CFNStackName-like-service**.
+Make sure you're in the like repository folder, which should be named something like **mythical-mysfits-devops-like-service**.
 
 <pre>
 $ cd ~/environment/<b>REPLACE_ME_LIKE_REPOSITORY_NAME</b>
