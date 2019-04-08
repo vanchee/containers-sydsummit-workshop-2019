@@ -111,8 +111,6 @@ On the **Create build project** page, enter in the following details:
 - Source Provider: Select **AWS CodeCommit**
 - Repository: Choose the repo from the CloudFormation stack that looks like StackName-**like-service**
 
-![CodeBuild Create Build Project](images/cb-create-1.png)
-
 **Environment:**
 
 - Environment Image: Select **Managed Image** - *There are two options. You can either use a predefined Docker container that is curated by CodeBuild, or you can upload your own if you want to customize dependencies etc. to speed up build time*
