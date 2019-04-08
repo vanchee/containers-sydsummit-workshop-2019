@@ -113,6 +113,8 @@ On the **Create build project** page, enter in the following details:
 
 **Environment:**
 
+![CodeBuild Create Project Part 2](images/cb-create-project-2.png)
+
 - Environment Image: Select **Managed Image** - *There are two options. You can either use a predefined Docker container that is curated by CodeBuild, or you can upload your own if you want to customize dependencies etc. to speed up build time*
 - Operating System: Select **Ubuntu** - *This is the OS that will run your build*
 - Runtime: Select **Docker** - *Each image has specific versions of software installed. See [Docker Images Provided by AWS CodeBuild](http://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html)*
@@ -141,18 +143,6 @@ Expand the **Additional Information** and enter the following in Environment Var
 - Type: Select **No artifacts** *If there are any build outputs that need to be stored, you can choose to put them in S3.*
 
 Click **Create build project**.
-
-![CodeBuild Create Project Part 2](images/cb-create-project-2.png)
-
-2\. Get login, tag, and push commands for ECR
-
-We now have the building blocks in place to start automating the builds of our Docker images. You should have previously found all the commands to push/pull from ECR, but if not, follow this. Otherwise, skip to Step 5 and create your Buildspec now.
-
-In the AWS Management Console, navigate to [Repositories](https://console.aws.amazon.com/ecs/home#/repositories) in the ECS dashboard. Click on the repository with "like" in the name.
-
-Click on "View Push Commands" and copy the login, build, tag, and push commands to use later.
-
-![ECR Get Like Commands](images/ecr-get-like-commands.png)
 
 ### Create BuildSpec File
 
