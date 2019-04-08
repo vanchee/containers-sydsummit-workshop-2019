@@ -22,15 +22,7 @@ $ git config --global credential.helper '!aws codecommit credential-helper $@'
 $ git config --global credential.UseHttpPath true
 </pre>
 
-## Lab - Starting the DevSecOps Journey
-
-In this lab, we are going to start building in DevSecOps. Security is everyone's responsibility and in today, you will ensure that you aren't checking in any AWS secrets like AWS Access and Secret Keys.
-
-Here's what you'll be doing:
-
 * [Set up repos](#set-up-repos)
-* [Build security right into git commits](#build-security-right-into-git-commits)
-* [Remediation](#rsemediation)
 
 ### Set up repos
 
@@ -91,9 +83,9 @@ $ cp -R ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/app/monolit
 </pre>
 
 
-# Mythical Mysfits: DevSecOps with Docker and AWS Fargate
+# Mythical Mysfits: DevOps with Docker and AWS Fargate
 
-## Lab 2 - Offloading Builds to AWS CodeBuild
+## Lab Offloading Builds to AWS CodeBuild
 
 In this lab, you will start the process of automating the entire software delivery process. The first step we're going to take is to automate the Docker container builds and push the container image into the Elastic Container Registry. This will allow you to develop and not have to worry too much about build resources. We will use AWS CodeCommit and AWS CodeBuild to automate this process. Then, we'll create a continuous delivery pipeline for our Like service in AWS Fargate.
 
