@@ -30,8 +30,6 @@ That's why we've hired you to be our first Full Stack Engineer. We need a more s
 
  * Step5 : [automating-end-to-end-deployments-for-aws-fargate](https://github.com/vanchee/containers-sydsummit-workshop-2019/tree/master/all-lab-modules/lab2a-option1-ecs-labs/03-automating-end-to-end-deployments-for-aws-fargate)
 
- * Step6 : [log analysis with cloudwatch logs and elasticsearch]()
-
 ### ECS Learning Path
 
 You will learn,
