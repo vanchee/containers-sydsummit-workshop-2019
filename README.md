@@ -36,7 +36,6 @@ You will learn,
 
             * Configure ECS Cluster with Fargate
             * Splitiing monolith into microservices, leveraging ALB
-            * logging & Application monitoring
             * CI/CD Pipeline for ECS
 
 ### EKS Learning Path
