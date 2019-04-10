@@ -26,7 +26,7 @@ That's why we've hired you to be our first Full Stack Engineer. We need a more s
 
 * Step3 : [deploy-your-container-to-ecs-fargate-cluster](https://github.com/vanchee/containers-sydsummit-workshop-2019/blob/master/all-lab-modules/lab2a-option1-ecs-labs/01-deploy-your-ecs-fargate-cluster/READ.md)
 
-* Step4 : [breaking-monolith-image-ecs](https://github.com/vanchee/containers-sydsummit-workshop-2019/blob/master/all-lab-modules/lab2a-option1-ecs-labs/02-breaking-monolith-image-ecs/README.md)
+* Step4 : [breaking-monolith-image-ecs](https://github.com/vanchee/containers-sydsummit-workshop-2019/blob/master/all-lab-modules/lab2a-option1-ecs-labs/02-breaking-monolith-to-microservices-image-ecs/README.md) 
 
  * Step5 : [automating-end-to-end-deployments-for-aws-fargate](https://github.com/vanchee/containers-sydsummit-workshop-2019/tree/master/all-lab-modules/lab2a-option1-ecs-labs/03-automating-end-to-end-deployments-for-aws-fargate)
 
