@@ -67,6 +67,7 @@ The Mythical Mysfits adoption agency infrastructure has always been running dire
    RUN pip install --upgrade pip
    COPY ./service /MythicalMysfitsService
    WORKDIR /MythicalMysfitsService
+   COPY service/requirements.txt .
    RUN pip install -r ./requirements.txt
    EXPOSE 80
    ENTRYPOINT ["python"]
