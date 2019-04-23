@@ -149,19 +149,19 @@ The Mythical Mysfits adoption agency infrastructure has always been running dire
     #### Final Dockerfile
     <details>
     <summary>HINT: Final Dockerfile</summary>
-    <pre>
-    FROM ubuntu:latest
-    RUN apt-get update -y
-    RUN apt-get install -y python-pip python-dev build-essential
-    RUN pip install --upgrade pip
-    COPY service/requirements.txt .
-    RUN pip install -r ./requirements.txt
-    COPY ./service /MythicalMysfitsService
-    WORKDIR /MythicalMysfitsService
-    EXPOSE 80
-    ENTRYPOINT ["python"]
-    CMD ["mythicalMysfitsService.py"]
-    </pre>
+   <pre>
+   FROM ubuntu:latest
+   RUN apt-get update -y
+   RUN apt-get install -y python-pip python-dev build-essential
+   RUN pip install --upgrade pip
+   COPY service/requirements.txt .
+   RUN pip install -r ./requirements.txt
+   COPY ./service /MythicalMysfitsService
+   WORKDIR /MythicalMysfitsService
+   EXPOSE 80
+   ENTRYPOINT ["python"]
+   CMD ["mythicalMysfitsService.py"]
+   </pre>
     </details>
 
     To see the benefit of your optimizations, you'll need to first rebuild the monolith image using your new Dockerfile (use the same build command at the beginning of step 5).  Then, introduce a change in `mythicalMysfitsService.py` (e.g. add another arbitrary comment) and rebuild the monolith image again.  Docker cached the requirements during the first rebuild after the re-ordering and references cache during this second rebuild.  You should see something similar to below:
