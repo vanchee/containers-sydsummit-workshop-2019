@@ -46,6 +46,7 @@
 5. Run some additional automated setup steps with the `setup` script:
 
     ```
+    $ chmod +x script/setup 
     $ script/setup
     ```
 
