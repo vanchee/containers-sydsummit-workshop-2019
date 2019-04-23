@@ -60,18 +60,18 @@ The Mythical Mysfits adoption agency infrastructure has always been running dire
 
     <details>
     <summary>HINT: Completed Dockerfile</summary>
-    <pre>
-    FROM ubuntu:latest
-    RUN apt-get update -y
-    RUN apt-get install -y python-pip python-dev build-essential
-    RUN pip install --upgrade pip
-    COPY ./service /MythicalMysfitsService
-    WORKDIR /MythicalMysfitsService
-    RUN pip install -r ./requirements.txt
-    EXPOSE 80
-    ENTRYPOINT ["python"]
-    CMD ["mythicalMysfitsService.py"]
-    </pre>
+   <pre>
+   FROM ubuntu:latest
+   RUN apt-get update -y
+   RUN apt-get install -y python-pip python-dev build-essential
+   RUN pip install --upgrade pip
+   COPY ./service /MythicalMysfitsService
+   WORKDIR /MythicalMysfitsService
+   RUN pip install -r ./requirements.txt
+   EXPOSE 80
+   ENTRYPOINT ["python"]
+   CMD ["mythicalMysfitsService.py"]
+   </pre>
     </details>
 
     If your Dockerfile looks good, rename your file from "Dockerfile.draft" to "Dockerfile" and continue to the next step.
