@@ -77,6 +77,7 @@ The Mythical Mysfits adoption agency infrastructure has always been running dire
     If your Dockerfile looks good, rename your file from "Dockerfile.draft" to "Dockerfile" and continue to the next step.
 
     <pre>
+    $ cd ~/environment/containers-sydsummit-workshop-2019/workshop-1/app/monolith-service/
     $ mv Dockerfile.draft Dockerfile
     </pre>
 
