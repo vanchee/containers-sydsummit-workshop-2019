@@ -40,7 +40,7 @@
     In the terminal, change directory to the subdirectory for this workshop in the repo:
 
     ```
-    $ cd amazon-ecs-mythicalmysfits-workshop/workshop-1
+    $ cd containers-sydsummit-workshop-2019/workshop-1
     ```
 
 5. Run some additional automated setup steps with the `setup` script:
