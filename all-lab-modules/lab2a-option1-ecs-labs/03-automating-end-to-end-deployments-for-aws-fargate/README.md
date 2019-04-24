@@ -78,8 +78,8 @@ Earlier in the workshop, we set up the CodeCommit credential helper, so we'll us
 $ cd ~/environment/
 $ git clone <b><i>REPLACEME_LIKE_REPOSITORY_CLONEURL</b></i>
 $ git clone <b><i>REPLACEME_MONOLITH_REPOSITORY_CLONEURL</b></i>
-$ cp -R ~/environment/containers-sydsummit-workshop-2019/workshop-1/app/like-service/* <b><i>REPLACEME_LIKE_REPOSITORY_NAME</b></i>
-$ cp -R ~/environment/containers-sydsummit-workshop-2019/workshop-1/app/monolith-service/* <b><i>REPLACEME_MONOLITH_REPOSITORY_NAME</b></i>
+$ cp -R ~/environment/containers-sydsummit-workshop-2019/workshop-1/app/like-service/* mythical-mysfits-devsecops-like-service
+$ cp -R ~/environment/containers-sydsummit-workshop-2019/workshop-1/app/monolith-service/* mythical-mysfits-devsecops-monolith-service
 </pre>
 
 
