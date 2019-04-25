@@ -81,9 +81,6 @@ $ cp -R ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/app/like-se
 $ cp -R ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/app/monolith-service/* <b><i>REPLACEME_MONOLITH_REPOSITORY_NAME</b></i>
 </pre>
 
-
-# Mythical Mysfits: DevOps with Docker and AWS Fargate
-
 ## Lab Offloading Builds to AWS CodeBuild
 
 In this lab, you will start the process of automating the entire software delivery process. The first step we're going to take is to automate the Docker container builds and push the container image into the Elastic Container Registry. This will allow you to develop and not have to worry too much about build resources. We will use AWS CodeCommit and AWS CodeBuild to automate this process. Then, we'll create a continuous delivery pipeline for our Like service in AWS Fargate.
