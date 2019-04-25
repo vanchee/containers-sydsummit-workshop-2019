@@ -269,7 +269,7 @@ Replace the container name with the name of your service, which should be `like-
   </pre>
 </details>
 
-2\. Check in and push to dev
+2\. Check in and push to prod
 
 Add, commit, and push the new file to your repo. You can try to build the app again, but CodeBuild will just do the same thing because it's still looking at buildspec_prod.yml.
 
