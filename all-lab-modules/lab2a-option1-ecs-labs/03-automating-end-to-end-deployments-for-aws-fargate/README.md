@@ -380,7 +380,8 @@ Once complete, please remember to follow the steps below in the **Workshop Clean
 This is really important because if you leave stuff running in your account, it will continue to generate charges.  Certain things were created by CloudFormation and certain things were created manually throughout the workshop.  Follow the steps below to make sure you clean up properly.
 
 Delete manually created resources throughout the labs:
-* Code  service(s) - Delete Code Commit repo, Code, pipeline.
+* Code service(s) - Delete Code Commit repo, Code, pipeline.
+
 * ECS service(s) - first update the desired task count to be 0.  Then delete the ECS service itself.
 * ECR - delete any Docker images pushed to your ECR repository.
 * CloudWatch logs groups
