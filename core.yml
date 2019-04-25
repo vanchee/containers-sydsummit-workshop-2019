@@ -111,7 +111,7 @@ Resources:
   MythicalLoadBalancer:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
-      Name: !Sub alb-${AWS::StackName}
+      Name: !Sub alb-mythical-mysfits
       Scheme: internet-facing
       Type: application
       SecurityGroups:
