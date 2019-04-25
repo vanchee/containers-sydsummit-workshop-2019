@@ -159,7 +159,7 @@ Another developer from the Mythical Mysfits team has started a buildspec_dev fil
 <pre>
 $ cd ~/environment/<b><i>REPLACEME_LIKE_REPO_NAME</b></i>
 $ git checkout -b dev
-$ cp ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/Lab-2/hints/buildspec_dev.yml.draft buildspec_dev.yml
+$ cp ~/environment/containers-sydsummit-workshop-2019/all-lab-modules/lab2a-option1-ecs-labs/03-automating-end-to-end-deployments-for-aws-fargate/hints/buildspec_dev.yml.draft buildspec_prod.yml
 </pre>
 
 Now that you have a copy of the draft as your buildspec, you can start editing it. The previous developer left comments indicating what commands you need to add (<b>These comments look like - #[TODO]:</b>). Add the remaining instructions to your buildspec_dev.yml.
@@ -220,7 +220,7 @@ $ cp ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/Lab-2/hints/hi
 
 </details>
 
-When we created the buildspec_dev.yml file, we used CODEBUILD_RESOLVED_SOURCE_VERSION. What is CODEBUILD_RESOLVED_SOURCE_VERSION and why didn't we just use CODEBUILD_SOURCE_VERSION? You can find out in the [Environment Variables for Build Environments](http://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-env-vars.html) documentation.
+When we created the buildspec_prod.yml file, we used CODEBUILD_RESOLVED_SOURCE_VERSION. What is CODEBUILD_RESOLVED_SOURCE_VERSION and why didn't we just use CODEBUILD_SOURCE_VERSION? You can find out in the [Environment Variables for Build Environments](http://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-env-vars.html) documentation.
 
 <details>
   <summary>
@@ -230,19 +230,11 @@ When we created the buildspec_dev.yml file, we used CODEBUILD_RESOLVED_SOURCE_VE
 
 </details>
 
-### Create new buildspec for prod environments
-
-1\. Create the buildspec_prod.yml file
-
-In the above section, we created a buildspec for dev named buildspec_dev. That was used when CodeBuild was run directly on source code in CodeCommit, but now for production we want to build a full pipeline that will automatically deploy our environment, so we'll use CodePipeline to orchestrate that.
-
-Ideally, we want to keep production and development branches as similar as possible, but want to control differences between dev and prod build stages. To start, we can basically copy over what we created for Lab 2, but there will be a few minor changes. We will name the new buildspec buildspec_prod.yml instead of buildspec_dev.yml.
-
-Make sure you're in the like repository folder, which should be named something like **mythical-mysfits-devops-like-service**.
+Make sure you're in the like repository folder, which should be named something like **mythical-mysfits-devops-like-service** and Ensure your buildspec_prod.yml is ready.
 
 <pre>
 $ cd ~/environment/<b>REPLACE_ME_LIKE_REPOSITORY_NAME</b>
-$ cp buildspec_dev.yml buildspec_prod.yml
+
 </pre>
 
 Next, in order for CodePipeline to deploy to Fargate, we need to have an `imagedefinitions.json` file that includes the name of the container we want to replace as well as the imageUri. Then we have to surface the file to CodePipeline in an Artifacts section. The end of your buildspec_prod.yml file will look like this:
@@ -315,7 +307,6 @@ Click **Next**.
 - Build provider: **AWS CodeBuild**
 - Project name: Click **Create a new build project**
 
-A new window should appear. The values here are almost identical to that of Lab-2 when you created your dev CodeBuild project, with the exception that the name is now prod-like-service-build and the buildspec will be buildspec_prod.yml. See Lab-2 instructions for detailed screenshots.
 
 **Create build project:**
 
@@ -389,7 +380,7 @@ Once complete, please remember to follow the steps below in the **Workshop Clean
 This is really important because if you leave stuff running in your account, it will continue to generate charges.  Certain things were created by CloudFormation and certain things were created manually throughout the workshop.  Follow the steps below to make sure you clean up properly.
 
 Delete manually created resources throughout the labs:
-
+* Code  service(s) - Delete Code Commit repo, Code, pipeline.
 * ECS service(s) - first update the desired task count to be 0.  Then delete the ECS service itself.
 * ECR - delete any Docker images pushed to your ECR repository.
 * CloudWatch logs groups
