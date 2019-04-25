@@ -385,3 +385,19 @@ $ git push origin master
 </pre>
 
 Now sit back, relax, and watch the deployment. When it's done, congratulations! You've unlocked the automated build and deploy achievement!
+
+Once complete, please remember to follow the steps below in the **Workshop Cleanup** to make sure all assets created during the workshop are removed so you do not see unexpected charges after today.
+
+## Workshop Cleanup
+
+This is really important because if you leave stuff running in your account, it will continue to generate charges.  Certain things were created by CloudFormation and certain things were created manually throughout the workshop.  Follow the steps below to make sure you clean up properly.
+
+Delete manually created resources throughout the labs:
+
+* ECS service(s) - first update the desired task count to be 0.  Then delete the ECS service itself.
+* ECR - delete any Docker images pushed to your ECR repository.
+* CloudWatch logs groups
+* ALBs and associated target groups
+
+Finally, [delete the CloudFormation stack](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-delete-stack.html) launched at the beginning of the workshop to clean up the rest.  If the stack deletion process encountered errors, look at the Events tab in the CloudFormation dashboard, and you'll see what steps failed.  It might just be a case where you need to clean up a manually created asset that is tied to a resource goverened by CloudFormation.
+

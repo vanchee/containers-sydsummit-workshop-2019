@@ -87,7 +87,7 @@ Here's what you will be implementing:
 
 *Note: The green tasks denote the monolith and the orange tasks denote the "like" microservice
 
-    
+
 As with the monolith, you'll be using [Fargate](https://aws.amazon.com/fargate/) to deploy these microservices, but this time we'll walk through all the deployment steps for a fresh service.
 
 ### Instructions:
@@ -279,18 +279,6 @@ As with the monolith, you'll be using [Fargate](https://aws.amazon.com/fargate/)
 10. Now make one last Task Definition for the monolith to refer to this new container image URI (this process should be familiar now, and you can probably see that it makes sense to leave this drudgery to a CI/CD service in production), update the monolith service to use the new Task Definition, and make sure the app still functions as before.
 
 ### Checkpoint:
-Congratulations, you've successfully rolled out the like microservice from the monolith.  If you have time, try repeating this lab to break out the adoption microservice.  Otherwise, please remember to follow the steps below in the **Workshop Cleanup** to make sure all assets created during the workshop are removed so you do not see unexpected charges after today.
+Congratulations, you've successfully rolled out the like microservice from the monolith.  If you have time, try repeating this lab to break out the adoption microservice.  
 
-## Workshop Cleanup
-
-This is really important because if you leave stuff running in your account, it will continue to generate charges.  Certain things were created by CloudFormation and certain things were created manually throughout the workshop.  Follow the steps below to make sure you clean up properly.
-
-Delete manually created resources throughout the labs:
-
-* ECS service(s) - first update the desired task count to be 0.  Then delete the ECS service itself.
-* ECR - delete any Docker images pushed to your ECR repository.
-* CloudWatch logs groups
-* ALBs and associated target groups
-
-Finally, [delete the CloudFormation stack](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-delete-stack.html) launched at the beginning of the workshop to clean up the rest.  If the stack deletion process encountered errors, look at the Events tab in the CloudFormation dashboard, and you'll see what steps failed.  It might just be a case where you need to clean up a manually created asset that is tied to a resource goverened by CloudFormation.
 
