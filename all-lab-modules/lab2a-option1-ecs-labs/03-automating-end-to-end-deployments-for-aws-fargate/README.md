@@ -30,38 +30,38 @@ $ git config --global credential.UseHttpPath true
 Up until now, Mythical Mysfits hasn't really been doing anything with source repos, so let's start checking things into repos like we're supposed to. First, you'll create 2 repositories. We'll do it from the CLI this time.
 
 <pre>
-$ aws codecommit create-repository --repository-name mythical-mysfits-devsecops-like-service --repository-description "mythical mysfits devsecops like service"
+$ aws codecommit create-repository --repository-name mythical-mysfits-devops-like-service --repository-description "mythical mysfits devops like service"
 
-$ aws codecommit create-repository --repository-name mythical-mysfits-devsecops-monolith-service --repository-description "mythical mysfits devsecops monolith service"
+$ aws codecommit create-repository --repository-name mythical-mysfits-devops-monolith-service --repository-description "mythical mysfits devops monolith service"
 
 </pre>
 
 Next, use the batch-get-repositories command to get the clone URLs for both repositories, substituting the names you got from the previous CLI command:
 
 <pre>
-$ aws codecommit batch-get-repositories --repository-names mythical-mysfits-devsecops-monolith-service mythical-mysfits-devsecops-like-service
+$ aws codecommit batch-get-repositories --repository-names mythical-mysfits-devops-monolith-service mythical-mysfits-devops-like-service
 {
     "repositories": [
         {
-            "repositoryName": "mythical-mysfits-devsecops-monolith-service",
-            "cloneUrlSsh": "ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/mythical-mysfits-devsecops-monolith-service",
+            "repositoryName": "mythical-mysfits-devops-monolith-service",
+            "cloneUrlSsh": "ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/mythical-mysfits-devops-monolith-service",
             "lastModifiedDate": 1542588318.447,
             "repositoryDescription": "Repository for the Mythical Mysfits monolith service",
-            "cloneUrlHttp": "https://git-codecommit.eu-west-1.amazonaws.com/v1/repos/mythical-mysfits-devsecops-monolith-service",
+            "cloneUrlHttp": "https://git-codecommit.eu-west-1.amazonaws.com/v1/repos/mythical-mysfits-devops-monolith-service",
             "creationDate": 1542588318.447,
             "repositoryId": "c8aa761e-3ed1-4033-b830-4d9465b51087",
-            "Arn": "arn:aws:codecommit:eu-west-1:123456789012:mythical-mysfits-devsecops-monolith-service",
+            "Arn": "arn:aws:codecommit:eu-west-1:123456789012:mythical-mysfits-devops-monolith-service",
             "accountId": "123456789012"
         },
         {
             "repositoryName": "mythical-mysfits-devsecops-like-service",
-            "cloneUrlSsh": "ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/mythical-mysfits-devsecops-like-service",
+            "cloneUrlSsh": "ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/mythical-mysfits-devops-like-service",
             "lastModifiedDate": 1542500073.535,
             "repositoryDescription": "Repository for the Mythical Mysfits like service",
-            "cloneUrlHttp": "https://git-codecommit.eu-west-1.amazonaws.com/v1/repos/mythical-mysfits-devsecops-like-service",
+            "cloneUrlHttp": "https://git-codecommit.eu-west-1.amazonaws.com/v1/repos/mythical-mysfits-devops-like-service",
             "creationDate": 1542500073.535,
             "repositoryId": "54763f98-c295-4189-a91a-7830ea085aae",
-            "Arn": "arn:aws:codecommit:eu-west-1:123456789012:mythical-mysfits-devsecops-like-service",
+            "Arn": "arn:aws:codecommit:eu-west-1:123456789012:mythical-mysfits-devops-like-service",
             "accountId": "123456789012"
         }
     ],
