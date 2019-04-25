@@ -114,7 +114,7 @@ On the **Create build project** page, enter in the following details:
 
 **Environment:**
 
-![CodeBuild Create Project Part 2](images/cb-create-project-2.png)
+![CodeBuild Create Project](images/cb-create-project-2.png)
 
 - Environment Image: Select **Managed Image** - *There are two options. You can either use a predefined Docker container that is curated by CodeBuild, or you can upload your own if you want to customize dependencies etc. to speed up build time*
 - Operating System: Select **Ubuntu** - *This is the OS that will run your build*
