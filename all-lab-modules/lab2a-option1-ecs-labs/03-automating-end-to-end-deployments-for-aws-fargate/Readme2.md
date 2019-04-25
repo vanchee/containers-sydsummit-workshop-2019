@@ -133,7 +133,7 @@ Expand the **Additional Information** and enter the following in Environment Var
 **Buildspec:**
 
 - Build Specification: Select **Use a buildspec file** - *We are going to provide CodeBuild with a buildspec file*
-- Buildspec name: Enter `buildspec_prod.yml` - *we'll be using the same repo, but different buildspecs*
+- Buildspec name: Enter `buildspec_prod.yml` 
 
 
 **Artifacts:**
@@ -148,17 +148,11 @@ Click **Create build project**.
 
 AWS CodeBuild uses a definition file called a buildspec Yaml file. The contents of the buildspec will determine what AWS actions CodeBuild should perform. The key parts of the buildspec are Environment Variables, Phases, and Artifacts. See [Build Specification Reference for AWS CodeBuild](http://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html) for more details.
 
-**At Mythical Mysfits, we want to follow best practices, so there are 2 requirements:**
-
-1. We don't use the ***latest*** tag for Docker images. We have decided to use the Commit ID from our source control instead as the tag so we know exactly what image was deployed.
-
-2. We want to use multiple buildspec files. One for dev, one for test, one for prod.
 
 Another developer from the Mythical Mysfits team has started a buildspec_dev file for you, but never got to finishing it. Add the remaining instructions to the buildspec_dev.yml.draft file. The file should be in your like-service folder and already checked in. Let's create a dev branch and copy the draft to a buildspec_dev.yml file.
 
 <pre>
 $ cd ~/environment/<b><i>REPLACEME_LIKE_REPO_NAME</b></i>
-$ git checkout -b dev
 $ cp ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/Lab-2/hints/buildspec_dev.yml.draft buildspec_dev.yml
 </pre>
 
