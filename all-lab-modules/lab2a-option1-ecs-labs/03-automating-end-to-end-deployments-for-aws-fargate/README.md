@@ -71,7 +71,7 @@ After the CloudFormation stack is created, the latest commit to the GitHub repos
 
 ![Sample_App_page](images/Sample_PHP_App.png)
 
-To test continuous deployment, make a change to src/index.php in the ecs-demo-php-simple-app repository and push it to GitHub.
+To review the pipeline stages and test continuous deployment, make a change to src/index.php in the ecs-demo-php-simple-app repository and push it to GitHub.
 
 From your terminal application, change the working directory to your local copy of the repository, and then run the following commands to push the changes to your remote repository:
 
