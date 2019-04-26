@@ -67,4 +67,4 @@ The CloudFormation stack provides the following output:
 
 # Step 4: Testing the example
 
-Once the
+After the CloudFormation stack is created, the latest commit to the GitHub repository is run through the pipeline and deployed to Amazon ECS. Open the PipelineUrl to watch the first revision run through the AWS CodePipeline pipeline. After the deploy step turns green, open the URL from ServiceUrl, which loads a page similar to this:
