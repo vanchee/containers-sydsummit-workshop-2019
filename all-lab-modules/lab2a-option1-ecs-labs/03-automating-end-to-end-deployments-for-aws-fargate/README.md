@@ -158,7 +158,7 @@ Another developer from the Mythical Mysfits team has started a buildspec_dev fil
 
 <pre>
 $ cd ~/environment/<b><i>REPLACEME_LIKE_REPO_NAME</b></i>
-$ git checkout -b prod
+$ git checkout -b master
 $ cp ~/environment/containers-sydsummit-workshop-2019/all-lab-modules/lab2a-option1-ecs-labs/03-automating-end-to-end-deployments-for-aws-fargate/hints/buildspec_dev.yml.draft buildspec_prod.yml
 </pre>
 
@@ -266,9 +266,9 @@ Replace the container name with the name of your service, which should be `like-
 Add, commit, and push the new file to your repo. You can try to build the app again, but CodeBuild will just do the same thing because it's still looking at buildspec_prod.yml.
 
 <pre>
-  $ git add buildspec_prod.yml
+  $ git add .
   $ git commit -m "Adding a buildspec for prod"
-  $ git push origin prod
+  $ git push origin master
 </pre>
 
 ### Create Pipeline for deployments
