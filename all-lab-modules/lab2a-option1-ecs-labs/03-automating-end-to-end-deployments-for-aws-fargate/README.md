@@ -215,7 +215,7 @@ phases:
 
 You can copy a pre-created one into your application directory. If you do, make sure you replace the REPOSITORY_URI with the one from your like-service ECR repository!
 <pre>
-$ cp ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/Lab-2/hints/hintspec_dev.yml buildspec_prod.yml
+$ cp ~/environment/containers-sydsummit-workshop-2019/workshop-2/Lab-3/hints/buildspec_prod.yml ~/environment/<b><i>REPLACEME_LIKE_REPOSITORY_NAME</b>/buildspec_prod.yml
 </pre>
 
 </details>
