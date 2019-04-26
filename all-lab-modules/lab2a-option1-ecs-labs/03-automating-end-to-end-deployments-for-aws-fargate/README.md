@@ -282,10 +282,10 @@ On the following pages, enter the following details:
 **Choose pipeline settings:**
 
 - Pipeline name: `prod-like-service` - *This is a production pipeline, so we'll prefix with prod*
-- Service role: **Existing service role** - *A service role was automatically created for you via CFN*
-- Role name: Choose **CFNStackName-CodeBuildServiceRole** - *Look for the service role that has the name of the CFN stack you created previously*
-- Artifact store: Choose **Custom location** - *An artifact bucket was created for you via CFN*
-- Bucket: Choose **CFNStackName-mythicalartifactbucket** - *Look for the artifact bucket that has the name of the CFN stack you created previously. Note that there are two buckets that were created for you. Look for the one that says mythicalartifactbucket*
+- Service role: **New service role**
+- Role name: *leave default*
+- Artifact store: Choose **Custom location** - *Create a new artifact S3 bucket manually*
+- Bucket: *Look for the artifact bucket that you created just now*
 
 Click **Next**
 
