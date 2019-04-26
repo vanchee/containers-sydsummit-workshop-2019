@@ -158,7 +158,7 @@ Another developer from the Mythical Mysfits team has started a buildspec_dev fil
 
 <pre>
 $ cd ~/environment/<b><i>REPLACEME_LIKE_REPO_NAME</b></i>
-$ git checkout -b prod
+$ git checkout -b master
 $ cp ~/environment/containers-sydsummit-workshop-2019/all-lab-modules/lab2a-option1-ecs-labs/03-automating-end-to-end-deployments-for-aws-fargate/hints/buildspec_dev.yml.draft buildspec_prod.yml
 </pre>
 
@@ -266,9 +266,9 @@ Replace the container name with the name of your service, which should be `like-
 Add, commit, and push the new file to your repo. You can try to build the app again, but CodeBuild will just do the same thing because it's still looking at buildspec_prod.yml.
 
 <pre>
-  $ git add buildspec_prod.yml
+  $ git add .
   $ git commit -m "Adding a buildspec for prod"
-  $ git push origin prod
+  $ git push origin master
 </pre>
 
 ### Create Pipeline for deployments
@@ -282,10 +282,10 @@ On the following pages, enter the following details:
 **Choose pipeline settings:**
 
 - Pipeline name: `prod-like-service` - *This is a production pipeline, so we'll prefix with prod*
-- Service role: **Existing service role** - *A service role was automatically created for you via CFN*
-- Role name: Choose **CFNStackName-CodeBuildServiceRole** - *Look for the service role that has the name of the CFN stack you created previously*
-- Artifact store: Choose **Custom location** - *An artifact bucket was created for you via CFN*
-- Bucket: Choose **CFNStackName-mythicalartifactbucket** - *Look for the artifact bucket that has the name of the CFN stack you created previously. Note that there are two buckets that were created for you. Look for the one that says mythicalartifactbucket*
+- Service role: **New service role**
+- Role name: *leave default*
+- Artifact store: Choose **Custom location** - *Create a new artifact S3 bucket manually*
+- Bucket: *Look for the artifact bucket that you created just now*
 
 Click **Next**
 
@@ -305,36 +305,7 @@ Click **Next**.
 **Add build stage:**
 
 - Build provider: **AWS CodeBuild**
-- Project name: Click **Create a new build project**
-
-
-**Create build project:**
-
-- Project name: `prod-like-service-build`
-- Environment Image: Select **Managed Image** - *There are two options. You can either use a predefined Docker container that is curated by CodeBuild, or you can upload your own if you want to customize dependencies etc. to speed up build time*
-- Operating System: Select **Ubuntu** - *This is the OS that will run your build*
-- Runtime: Select **Docker** - *Each image has specific versions of software installed. See [Docker Images Provided by AWS CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html)*
-- Runtime version: Select **aws/codebuild/docker:17.09.0** - *This will default to the latest*
-- Image version: **Leave as is**
-- Privileged: **Leave as is** - *You can't actually change anything here. In order for to run Docker inside a Docker container, you need to have elevated privileges*
-- Service role: **Existing service role** - *A service role was automatically created for you via CFN*
-- Role name: Choose **CFNStackName-CodeBuildServiceRole** - *Look for the service role that has the name of the CFN stack you created previously. It will be in the form of **CFNStackName**-CodeBuildServiceRole*
-
-- Uncheck **Allow AWS CodeBuild to modify this service role so it can be used with this build project**
-
-Expand the **Additional Information** and enter the following in Environment Variables:
-
-- Name: `AWS_ACCOUNT_ID` - *Enter this string*
-- Value: ***`REPLACEME_YOUR_ACCOUNT_ID`*** - *This is YOUR account ID*
-
-**Buildspec:**
-
-- Build Specification: Select **Use a buildspec file** - *We are going to provide CodeBuild with a buildspec file*
-- Buildspec name: Enter `buildspec_prod.yml` - *Using our new buildspec*
-
-Once confirmed, click **Continue to CodePipeline**. This should close out the popup and tell you that it **successfully created prod-like-service-build in CodeBuild.**
-
-- Project Name: **prod-like-service-build**
+- Project name: **prod-like-service-build**
 
 Click **Next**.
 
