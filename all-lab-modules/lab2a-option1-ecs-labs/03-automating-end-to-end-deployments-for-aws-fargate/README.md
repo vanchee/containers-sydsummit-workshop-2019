@@ -27,7 +27,7 @@ $ git config --global credential.UseHttpPath true
 
 1\. Clone repos and copy in app code
 
-Note: a CodeCommit repo was created from the initial CloudFormation template. Refer the CF output **MonoRepositoryUrlHttps** for the https clone URL 
+Note: a CodeCommit repo was created from the initial CloudFormation template. Refer the CF output **MythicalRepositoryUrlHttps** for the https clone URL 
 
 Earlier in the workshop, we set up the CodeCommit credential helper, so we'll use the HTTPS clone URLs instead of SSH.
 
@@ -228,7 +228,7 @@ Replace the container name with the name of your service, which should be `like-
 Add, commit, and push the new file to your repo. You can try to build the app again, but CodeBuild will just do the same thing because it's still looking at buildspec_prod.yml.
 
 <pre>
-  $ git add .
+  $ git add buildspec_prod.yml
   $ git commit -m "Adding a buildspec for prod"
   $ git push origin master
 </pre>
