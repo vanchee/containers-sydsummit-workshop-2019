@@ -70,3 +70,20 @@ The CloudFormation stack provides the following output:
 After the CloudFormation stack is created, the latest commit to the GitHub repository is run through the pipeline and deployed to Amazon ECS. Open the PipelineUrl to watch the first revision run through the AWS CodePipeline pipeline. After the deploy step turns green, open the URL from ServiceUrl, which loads a page similar to this:
 
 ![Sample_App_page](images/Sample_PHP_App.png)
+
+
+Once complete, please remember to follow the steps below in the **Workshop Cleanup** to make sure all assets created during the workshop are removed so you do not see unexpected charges after today.
+
+## Workshop Cleanup
+
+This is really important because if you leave stuff running in your account, it will continue to generate charges.  Certain things were created by CloudFormation and certain things were created manually throughout the workshop.  Follow the steps below to make sure you clean up properly.
+
+Delete manually created resources throughout the labs:
+* Code service(s) - Delete Code Commit repo, Code, pipeline.
+
+* ECS service(s) - first update the desired task count to be 0.  Then delete the ECS service itself.
+* ECR - delete any Docker images pushed to your ECR repository.
+* CloudWatch logs groups
+* ALBs and associated target groups
+
+Finally, [delete the CloudFormation stack](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-delete-stack.html) launched at the beginning of the workshop to clean up the rest.  If the stack deletion process encountered errors, look at the Events tab in the CloudFormation dashboard, and you'll see what steps failed.  It might just be a case where you need to clean up a manually created asset that is tied to a resource goverened by CloudFormation.
