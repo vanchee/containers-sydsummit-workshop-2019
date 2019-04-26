@@ -10,7 +10,7 @@ The ECS Continuous Deployment reference architecture demonstrates how to achieve
 
     AWS CloudFormation to deploy the new container image to production on Amazon ECS.
 
-#Step 1: Fork and clone the GitHub repository
+# Step 1: Fork and clone the GitHub repository
 
 Fork  the Amazon ECS mythical mysfits app  GitHub repository into your GitHub account.
 
@@ -24,7 +24,8 @@ git clone https://github.com/<your_github_username>/ecs-demo-php-simple-app
 </pre>
 
 This creates a directory named ecs-demo-php-simple-app in your current directory, which contains the code for the Amazon ECS sample app.
-Step 2: Create a personal access token
+
+# Step 2: Create a personal access token
 
 The personal access token is used by AWS CodePipeline to access the contents of your GitHub repository.
 
@@ -40,7 +41,7 @@ The personal access token is used by AWS CodePipeline to access the contents of 
 
     Copy the generated token to the clipboard.
 
-Step 3: Create the CloudFormation stack
+# Step 3: Create the CloudFormation stack
 
 Choose Launch Stack to launch the template in the US-west-2 (Oregon) Region in your account.
 **Oregon** (us-west-2) | [![Launch Mythical Mysfits Stack into Oregon with CloudFormation](/images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=cicd-mysfits-fargate&templateURL=https://s3-us-west-2.amazonaws.com/pv-ecs-refarch-continuous-deployment/ecs-refarch-continuous-deployment.yaml) |
