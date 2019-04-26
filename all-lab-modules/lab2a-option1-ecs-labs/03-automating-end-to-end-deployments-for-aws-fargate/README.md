@@ -71,8 +71,21 @@ After the CloudFormation stack is created, the latest commit to the GitHub repos
 
 ![Sample_App_page](images/Sample_PHP_App.png)
 
+To test continuous deployment, make a change to src/index.php in the ecs-demo-php-simple-app repository and push it to GitHub.
 
-Once complete, please remember to follow the steps below in the **Workshop Cleanup** to make sure all assets created during the workshop are removed so you do not see unexpected charges after today.
+From your terminal application, change the working directory to your local copy of the repository, and then run the following commands to push the changes to your remote repository:
+
+    git add .
+
+    git commit –m “changes to index.php”
+
+    git push origin master  
+    
+AWS CodePipeline detects the change, builds the new application, and deploys it to your cluster automatically. After the pipeline finishes deploying the revision, refresh the page to see your changes.
+
+This pipeline is now in production, listening for new code in the source code repository, and ready to ship future changes that your team pushes into production. The pipeline is extensible, meaning that you can add stages to include additional steps. For example, add a test stage to run unit and acceptance tests. This helps ensure new code revisions are safe to deploy to production. You can also include a notification step that alerts your team, through email or a Slack channel, that a new version is live. The notification can include details about the change that was deployed to production.
+
+# Once complete, please remember to follow the steps below in the **Workshop Cleanup** to make sure all assets created during the workshop are removed so you do not see unexpected charges after today.
 
 ## Workshop Cleanup
 
