@@ -158,7 +158,7 @@ Another developer from the Mythical Mysfits team has started a buildspec_dev fil
 
 <pre>
 $ cd ~/environment/<b><i>REPLACEME_LIKE_REPO_NAME</b></i>
-$ git checkout -b dev
+$ git checkout -b prod
 $ cp ~/environment/containers-sydsummit-workshop-2019/all-lab-modules/lab2a-option1-ecs-labs/03-automating-end-to-end-deployments-for-aws-fargate/hints/buildspec_dev.yml.draft buildspec_prod.yml
 </pre>
 
@@ -215,7 +215,7 @@ phases:
 
 You can copy a pre-created one into your application directory. If you do, make sure you replace the REPOSITORY_URI with the one from your like-service ECR repository!
 <pre>
-$ cp ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/Lab-2/hints/hintspec_dev.yml buildspec_dev.yml
+$ cp ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/Lab-2/hints/hintspec_dev.yml buildspec_prod.yml
 </pre>
 
 </details>
