@@ -343,8 +343,8 @@ Click **Next**.
 **Add deploy stage:**
 
 - Deployment provider: Select **Amazon ECS** - *This is the mechanism we're choosing to deploy with. CodePipeline also supports several other deployment options, but we're using ECS directly in this case.*
-- Cluster Name: Select your ECS Cluster. In my case, **Cluster-mythical-mysfits-devsecops** - *This is the cluster that CodePipeline will deploy into.*
-- Service Name: Enter `CFNStackName-Mythical-like-service` - *Name the CloudFormation stack that you're going to create/update*
+- Cluster Name: Select your ECS Cluster. In my case, **Cluster-mysfits** - *This is the cluster that CodePipeline will deploy into.*
+- *Service Name: Enter `Mysfits-like-service` - Choose from the service name under that cluster*
 - Image definitions file - *optional*: Enter `imagedefinitions.json` - *This is the file we created within the buildspec_prod.yml file earlier*
 
 ![CodePipeline ECS](images/cp-deploy-step.png)
@@ -359,13 +359,14 @@ By default, when you create your pipeline, CodePipeline will automatically run t
 
 ![CodePipeline ECS](images/cp-deploy-success.png)
 
-## Deploy new version of Project Cuddle
+## Deploy new version of Project
 
-Now that you have your application deploying automatically, let's deploy a new version! We've upgraded the health check for our like service to make sure it can connect to the monolith service for the fulfillment method.
+Now that you have your application deploying automatically, let's deploy a new version!
+We've upgraded the health check for our like service to make sure it can connect to the monolith service for the fulfillment method.
 
 <pre>
 $ cd ~/environment/REPLACEME_LIKE_REPO
-$ cp ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/Lab-3/mysfits_like_v2.py service/mysfits_like.py
+$ cp ~/environment/all-lab-modules/lab2a-option1-ecs-labs/03-automating-end-to-end-deployments-for-aws-fargate/ mysfits_like_v2.py service/mysfits_like.py
 $ git add service/mysfits_like.py
 $ git commit -m "Cuddles v2"
 $ git push origin master
