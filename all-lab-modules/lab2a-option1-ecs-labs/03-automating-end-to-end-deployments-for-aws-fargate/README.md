@@ -22,7 +22,7 @@ $ git config --global credential.helper '!aws codecommit credential-helper $@'
 $ git config --global credential.UseHttpPath true
 </pre>
 
-* [Set up repos](#set-up-repos)
+
 
 ### Set up repos
 
