@@ -25,60 +25,22 @@ $ git config --global credential.UseHttpPath true
 
 ### Set up repos
 
-1\. Clone all repos
+1\. Clone repos and copy in app code
 
-Up until now, Mythical Mysfits hasn't really been doing anything with source repos, so let's start checking things into repos like we're supposed to. First, you'll create 2 repositories. We'll do it from the CLI this time.
-
-<pre>
-$ aws codecommit create-repository --repository-name mythical-mysfits-devops-like-service --repository-description "mythical mysfits devops like service"
-
-$ aws codecommit create-repository --repository-name mythical-mysfits-devops-monolith-service --repository-description "mythical mysfits devops monolith service"
-
-</pre>
-
-Next, use the batch-get-repositories command to get the clone URLs for both repositories, substituting the names you got from the previous CLI command:
-
-<pre>
-$ aws codecommit batch-get-repositories --repository-names mythical-mysfits-devops-monolith-service mythical-mysfits-devops-like-service
-{
-    "repositories": [
-        {
-            "repositoryName": "mythical-mysfits-devops-monolith-service",
-            "cloneUrlSsh": "ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/mythical-mysfits-devops-monolith-service",
-            "lastModifiedDate": 1542588318.447,
-            "repositoryDescription": "Repository for the Mythical Mysfits monolith service",
-            "cloneUrlHttp": "https://git-codecommit.eu-west-1.amazonaws.com/v1/repos/mythical-mysfits-devops-monolith-service",
-            "creationDate": 1542588318.447,
-            "repositoryId": "c8aa761e-3ed1-4033-b830-4d9465b51087",
-            "Arn": "arn:aws:codecommit:eu-west-1:123456789012:mythical-mysfits-devops-monolith-service",
-            "accountId": "123456789012"
-        },
-        {
-            "repositoryName": "mythical-mysfits-devsecops-like-service",
-            "cloneUrlSsh": "ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/mythical-mysfits-devops-like-service",
-            "lastModifiedDate": 1542500073.535,
-            "repositoryDescription": "Repository for the Mythical Mysfits like service",
-            "cloneUrlHttp": "https://git-codecommit.eu-west-1.amazonaws.com/v1/repos/mythical-mysfits-devops-like-service",
-            "creationDate": 1542500073.535,
-            "repositoryId": "54763f98-c295-4189-a91a-7830ea085aae",
-            "Arn": "arn:aws:codecommit:eu-west-1:123456789012:mythical-mysfits-devops-like-service",
-            "accountId": "123456789012"
-        }
-    ],
-    "repositoriesNotFound": []
-}
-</pre>
-
-2\. Clone repos and copy in app code
+Note: a CodeCommit repo was created from the initial CloudFormation template. Refer the CF output **MonoRepositoryUrlHttps** for the https clone URL 
 
 Earlier in the workshop, we set up the CodeCommit credential helper, so we'll use the HTTPS clone URLs instead of SSH.
 
 <pre>
 $ cd ~/environment/
-$ git clone <b><i>REPLACEME_LIKE_REPOSITORY_CLONEURL</b></i>
-$ git clone <b><i>REPLACEME_MONOLITH_REPOSITORY_CLONEURL</b></i>
-$ cp -R ~/environment/containers-sydsummit-workshop-2019/workshop-1/app/like-service/* <b><i>REPLACEME_LIKE_REPOSITORY_NAME</b></i>
-$ cp -R ~/environment/containers-sydsummit-workshop-2019/workshop-1/app/monolith-service/* <b><i>REPLACEME_MONOLITH_REPOSITORY_NAME</b></i>
+$ git clone <b><i>REPLACEME_REPOSITORY_CLONEURLHTTPS</b></i>
+$ cp -R ~/environment/containers-sydsummit-workshop-2019/workshop-1/app/like-service/* <b><i>REPLACEME_REPOSITORY_NAME</b></i>
+</i>
+$ cd <b><i>REPLACEME_REPOSITORY_NAME</b></i>
+$ git checkout -b master
+$ git add .
+$ git commit -m "initial commit"
+$ git push origin master
 </pre>
 
 ## Lab Offloading Builds to AWS CodeBuild
