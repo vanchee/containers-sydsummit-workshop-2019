@@ -366,7 +366,7 @@ We've upgraded the health check for our like service to make sure it can connect
 
 <pre>
 $ cd ~/environment/REPLACEME_LIKE_REPO
-$ cp ~/environment/all-lab-modules/lab2a-option1-ecs-labs/03-automating-end-to-end-deployments-for-aws-fargate/ mysfits_like_v2.py service/mysfits_like.py
+$ cp ~/environment/containers-sydsummit-workshop-2019/all-lab-modules/lab2a-option1-ecs-labs/03-automating-end-to-end-deployments-for-aws-fargate/ mysfits_like_v2.py service/mysfits_like.py
 $ git add service/mysfits_like.py
 $ git commit -m "Cuddles v2"
 $ git push origin master
