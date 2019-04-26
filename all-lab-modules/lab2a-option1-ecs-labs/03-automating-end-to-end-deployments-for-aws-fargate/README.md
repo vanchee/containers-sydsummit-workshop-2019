@@ -305,36 +305,7 @@ Click **Next**.
 **Add build stage:**
 
 - Build provider: **AWS CodeBuild**
-- Project name: Click **Create a new build project**
-
-
-**Create build project:**
-
-- Project name: `prod-like-service-build`
-- Environment Image: Select **Managed Image** - *There are two options. You can either use a predefined Docker container that is curated by CodeBuild, or you can upload your own if you want to customize dependencies etc. to speed up build time*
-- Operating System: Select **Ubuntu** - *This is the OS that will run your build*
-- Runtime: Select **Docker** - *Each image has specific versions of software installed. See [Docker Images Provided by AWS CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html)*
-- Runtime version: Select **aws/codebuild/docker:17.09.0** - *This will default to the latest*
-- Image version: **Leave as is**
-- Privileged: **Leave as is** - *You can't actually change anything here. In order for to run Docker inside a Docker container, you need to have elevated privileges*
-- Service role: **Existing service role** - *A service role was automatically created for you via CFN*
-- Role name: Choose **CFNStackName-CodeBuildServiceRole** - *Look for the service role that has the name of the CFN stack you created previously. It will be in the form of **CFNStackName**-CodeBuildServiceRole*
-
-- Uncheck **Allow AWS CodeBuild to modify this service role so it can be used with this build project**
-
-Expand the **Additional Information** and enter the following in Environment Variables:
-
-- Name: `AWS_ACCOUNT_ID` - *Enter this string*
-- Value: ***`REPLACEME_YOUR_ACCOUNT_ID`*** - *This is YOUR account ID*
-
-**Buildspec:**
-
-- Build Specification: Select **Use a buildspec file** - *We are going to provide CodeBuild with a buildspec file*
-- Buildspec name: Enter `buildspec_prod.yml` - *Using our new buildspec*
-
-Once confirmed, click **Continue to CodePipeline**. This should close out the popup and tell you that it **successfully created prod-like-service-build in CodeBuild.**
-
-- Project Name: **prod-like-service-build**
+- Project name: **prod-like-service-build**
 
 Click **Next**.
 
