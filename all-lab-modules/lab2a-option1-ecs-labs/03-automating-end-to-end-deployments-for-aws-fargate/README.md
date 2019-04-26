@@ -378,7 +378,7 @@ Now that you have your application deploying automatically, let's deploy a new v
 
 <pre>
 $ cd ~/environment/REPLACEME_LIKE_REPO
-$ cp ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/Lab-3/mysfits_like_v2.py service/mysfits_like.py
+$ cp ~/environment/all-lab-modules/lab2a-option1-ecs-labs/03-automating-end-to-end-deployments-for-aws-fargate/mysfits_like_v2.py service/mysfits_like.py
 $ git add service/mysfits_like.py
 $ git commit -m "Cuddles v2"
 $ git push origin master
