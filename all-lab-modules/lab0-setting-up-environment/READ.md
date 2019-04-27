@@ -8,7 +8,7 @@
 
 | Region | Launch Template |
 | ------------ | ------------- |
-| **Oregon** (us-west-2) | [![Launch Mythical Mysfits Stack into Oregon with CloudFormation](/images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=mythical-mysfits-fargate&templateURL=https://s3-us-west-2.amazonaws.com/pv-containers-images-bucket/core.yml) |
+| **Oregon** (us-west-2) | [![Launch Mythical Mysfits Stack into Oregon with CloudFormation](/images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=mythical-mysfits-fargate&templateURL=https://s3-us-west-2.amazonaws.com/pv-containers-images-bucket/core-final.yml) |
 
 2. The template will automatically bring you to the CloudFormation Dashboard and start the stack creation process in the specified region. Give the stack a name that is unique within your account, and proceed through the wizard to launch the stack. Leave all options at their default values, but make sure to check the box to allow CloudFormation to create IAM roles on your behalf:
 
