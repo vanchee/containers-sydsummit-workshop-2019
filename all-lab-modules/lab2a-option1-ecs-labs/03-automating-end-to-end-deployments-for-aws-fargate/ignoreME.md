@@ -178,7 +178,7 @@ artifacts:
   </pre>
 </details>
 
-<b>#[TODO] Ensure you replace the $REPOSITORY_URI and container names in the final file. 
+<b>#[TODO] Ensure you replace the $REPOSITORY_URI and container names in the final file. </b>
 
 2\. We need to move all like service files from local to Code commit repository.
 
