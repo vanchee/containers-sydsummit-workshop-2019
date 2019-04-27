@@ -171,14 +171,14 @@ artifacts:
   files: imagedefinitions.json
 </pre>
 
-Replace the container name with the name of your service, which should be `like-service`.
-
 <details>
 <summary> HINT: There's also completed file in hints/hintspec_prod.yml. Click here to see how to copy it in.</summary>
   <pre>
   $ cp containers-sydsummit-workshop-2019/all-lab-modules/lab2a-option1-ecs-labs/03-automating-end-to-end-deployments-for-aws-fargate/hints/buildspec_prod.yml ~/environment/REPLACEME_REPO_NAME/buildspec_prod.yml
   </pre>
 </details>
+
+<b>#[TODO] Ensure you replace the $REPOSITORY_URI and container names in the final file. 
 
 2\. We need to move all like service files from local to Code commit repository.
 
