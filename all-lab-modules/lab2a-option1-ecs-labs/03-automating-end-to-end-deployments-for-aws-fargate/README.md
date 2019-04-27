@@ -38,8 +38,8 @@ $ git config --global credential.UseHttpPath true
 Up until now, Mythical Mysfits hasn't really been doing anything with source repos, so let's start checking things into repos like we're supposed to.
 
 Browse to AWS Code Commit in AWS console and review the repositories, you should see 2 repos created by our initial CFN template.
-### StackName-like-service and
-### Stackname-monolith-service.
+#### StackName-like-service and
+#### Stackname-monolith-service.
 
 
 2\. Clone the repos and copy in app code
