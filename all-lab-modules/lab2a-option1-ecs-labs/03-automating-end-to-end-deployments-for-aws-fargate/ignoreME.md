@@ -191,12 +191,12 @@ Next we need to Add, commit, and push the new file to your repo. You can try to 
   $ git push origin master
 </pre>
 
-Once all files are committed you should see the following in the Code Commit Repo fro like service.
+Once all files are committed you should see the following in the Code Commit Repo for like service.
 1. Service Folder
 2. buildspec_prod.yml
 3. Dockerfile
 
-![CodeCimmit Files](images/codecommit_files.png)
+![CodeCommit Files](images/codecommit_files.png)
 
 
 ### Review Pipeline for deployments
