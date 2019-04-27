@@ -68,50 +68,39 @@ Here's what you'll be doing:
 * [Create BuildSpec File](#create-buildspec-file)
 * [Test your AWS CodeBuild Project](#test-your-aws-codebuild-project)
 
-### Create AWS CodeBuild Project
+### Review AWS CodeBuild Project
 
-1\. Create and configure an AWS CodeBuild project.
+1\. Review the configuration of AWS CodeBuild project.
 
-We will be using AWS CodeBuild to offload the builds from the local Cloud9 instance. Let's create the AWS CodeBuild project. In the AWS Management Console, navigate to the [AWS CodeBuild dashboard](https://console.aws.amazon.com/codebuild/home). Click on **Create build project**.
+We will be using AWS CodeBuild to offload the builds from the local Cloud9 instance. This was pre-created by the initial CFN template we ran.  In the AWS Management Console, navigate to the [AWS CodeBuild dashboard](https://console.aws.amazon.com/codebuild/home). Click on **Build projects**.
 
-On the **Create build project** page, enter in the following details:
+On the **Build projects** page, you will find a Project Named `Stackname-like-service-build`
 
-- Project Name: Enter `prod-like-service-build`
-- Source Provider: Select **AWS CodeCommit**
-- Repository: Choose the repo from the CloudFormation stack that looks like StackName-**like-service**
-
-**Environment:**
+**Review CodeBuild Environment:**
 
 ![CodeBuild Create Project](images/cb-create-project-2.png)
 
-- Environment Image: Select **Managed Image** - *There are two options. You can either use a predefined Docker container that is curated by CodeBuild, or you can upload your own if you want to customize dependencies etc. to speed up build time*
-- Operating System: Select **Ubuntu** - *This is the OS that will run your build*
+- Environment Image: **Managed Image** - *There are two options. You can either use a predefined Docker container that is curated by CodeBuild, or you can upload your own if you want to customize dependencies etc. to speed up build time*
+- Operating System: **Ubuntu** - *This is the OS that will run your build*
 - Runtime: Select **Docker** - *Each image has specific versions of software installed. See [Docker Images Provided by AWS CodeBuild](http://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html)*
-- Runtime version: Select **aws/codebuild/docker:17.09.0** - *This will default to the latest*
-- Image version: **Leave as is**
-- Privileged: **Leave as is** - *You can't actually change anything here. In order for to run Docker inside a Docker container, you need to have elevated privileges*
+- Runtime version: **aws/codebuild/docker:17.09.0** - *This will default to the latest*
+- Privileged: **Leave as is** -  *In order for to run Docker inside a Docker container, you need to have elevated privileges*
 - Service role: **New service role** - *A service role was automatically created for you via CFN*
-- Role name: Choose New service role **New service role** that has the name of the CFN stack you created previously*
-- Uncheck **Allow AWS CodeBuild to modify this service role so it can be used with this build project**
 
-![CodeBuild Create Project Part 1](images/cb-create-project-1.png)
-
-Expand the **Additional Information** and enter the following in Environment Variables:
+Expand the **Environment Variables** and you will see the following :
 
 - Name: `AWS_ACCOUNT_ID` - *Enter this string*
 - Value: ***`REPLACEME_YOUR_ACCOUNT_ID`*** - *This is YOUR account ID*
 
 **Buildspec:**
 
-- Build Specification: Select **Use a buildspec file** - *We are going to provide CodeBuild with a buildspec file*
-- Buildspec name: Enter `buildspec_prod.yml` - *we'll be using the same repo, but different buildspecs*
-
+- Build Specification: *We will be providing CodeBuild with a buildspec file `buildspec_prod.yml` 
 
 **Artifacts:**
 
 - Type: Select **No artifacts** *If there are any build outputs that need to be stored, you can choose to put them in S3.*
 
-Click **Create build project**.
+Once you have reviewed the CodeBuild project move on to next step.
 
 ### Create BuildSpec File
 
@@ -119,16 +108,10 @@ Click **Create build project**.
 
 AWS CodeBuild uses a definition file called a buildspec Yaml file. The contents of the buildspec will determine what AWS actions CodeBuild should perform. The key parts of the buildspec are Environment Variables, Phases, and Artifacts. See [Build Specification Reference for AWS CodeBuild](http://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html) for more details.
 
-**At Mythical Mysfits, we want to follow best practices, so there are 2 requirements:**
-
-1. We don't use the ***latest*** tag for Docker images. We have decided to use the Commit ID from our source control instead as the tag so we know exactly what image was deployed.
-
-2. We want to use multiple buildspec files. One for dev, one for test, one for prod.
-
 Another developer from the Mythical Mysfits team has started a buildspec_dev file for you, but never got to finishing it. Add the remaining instructions to the buildspec_dev.yml.draft file. The file should be in your like-service folder and already checked in. Let's create a dev branch and copy the draft to a buildspec_dev.yml file.
 
 <pre>
-$ cd ~/environment/<b><i>REPLACEME_LIKE_REPO_NAME</b></i>
+$ cd ~/environment/<b><i>REPLACEME_LIKE_CODECOMMIT_REPO_NAME</b></i>
 $ git checkout -b master
 $ cp ~/environment/containers-sydsummit-workshop-2019/all-lab-modules/lab2a-option1-ecs-labs/03-automating-end-to-end-deployments-for-aws-fargate/hints/buildspec_dev.yml.draft buildspec_prod.yml
 </pre>
@@ -201,7 +184,7 @@ When we created the buildspec_prod.yml file, we used CODEBUILD_RESOLVED_SOURCE_V
 
 </details>
 
-Make sure you're in the like repository folder, which should be named something like **mythical-mysfits-devops-like-service** and Ensure your buildspec_prod.yml is ready.
+Make sure you're in the like repository folder, which should be named something like **Stackname-like-service** and Ensure your buildspec_prod.yml is ready.
 
 <pre>
 $ cd ~/environment/<b>REPLACE_ME_LIKE_REPOSITORY_NAME</b>
@@ -226,7 +209,7 @@ Replace the container name with the name of your service, which should be `like-
 
 <details>
 <summary> HINT: There's also completed file in hints/hintspec_prod.yml. Click here to see how to copy it in.</summary>
-  Make sure you change REPLACEME_REPO_URI to your ECR repository URI!
+  Make sure you change REPLACEME_CONTAINERNAME to your ECR repository URI!
   <pre>
   $ cp ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-2/Lab-3/hints/buildspec_prod.yml ~/environment/REPLACEME_REPO_NAME/buildspec_prod.yml
   </pre>
