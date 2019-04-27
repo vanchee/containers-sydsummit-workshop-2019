@@ -139,42 +139,8 @@ Here are links to documentation and hints to help along the way. If you get stuc
 - https://docs.docker.com/engine/reference/builder/#entrypoint
 </pre>
 
-<details>
-  <summary>
-    HINT: Click here for the completed buildspec.yml file.
-  </summary>
-  There are many ways to achieve what we're looking for. In this case, the buildspec looks like this:
-<pre>
-version: 0.2
 
-phases:
-  pre_build:
-    commands:
-      - echo Logging in to Amazon ECR...
-      - REPOSITORY_URI=REPLACEME_REPO_URI # This was started. Just replace REPLACEME_REPO_URI with your ECR Repo URI
-      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION) # <b><i>This is the login command from earlier</i></b>
-  build:
-    commands:
-      - echo Build started on `date`
-      - echo Building the Docker image...
-      - docker build -t $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION . # <b><i>There are a number of variables that are available directly in the CodeBuild build environment. We specified IMAGE_REPO_NAME earlier, but CODEBUILD_SOURCE_VERSION is there by default.</i></b>
-      - docker tag $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION # <b><i>This is the tag command from earlier</i></b>
-  post_build:
-    commands:
-      - echo Build completed on `date`
-      - echo Pushing the Docker image...
-      - docker push $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION # <b><i>This is the push command from earlier</i></b>
-</pre>
-<br/>
-
-You can copy a pre-created one into your application directory. If you do, make sure you replace the REPOSITORY_URI with the one from your like-service ECR repository!
-<pre>
-$ cp ~/environment/containers-sydsummit-workshop-2019/workshop-2/Lab-3/hints/buildspec_prod.yml ~/environment/<b><i>REPLACEME_LIKE_REPOSITORY_NAME</b>/buildspec_prod.yml
-</pre>
-
-</details>
-
-When we created the buildspec_prod.yml file, we used CODEBUILD_RESOLVED_SOURCE_VERSION. What is CODEBUILD_RESOLVED_SOURCE_VERSION and why didn't we just use CODEBUILD_SOURCE_VERSION? You can find out in the [Environment Variables for Build Environments](http://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-env-vars.html) documentation.
+When we create the buildspec_prod.yml file, we used CODEBUILD_RESOLVED_SOURCE_VERSION. What is CODEBUILD_RESOLVED_SOURCE_VERSION and why didn't we just use CODEBUILD_SOURCE_VERSION? You can find out in the [Environment Variables for Build Environments](http://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-env-vars.html) documentation.
 
 <details>
   <summary>
@@ -209,15 +175,15 @@ Replace the container name with the name of your service, which should be `like-
 
 <details>
 <summary> HINT: There's also completed file in hints/hintspec_prod.yml. Click here to see how to copy it in.</summary>
-
   <pre>
   $ cp containers-sydsummit-workshop-2019/all-lab-modules/lab2a-option1-ecs-labs/03-automating-end-to-end-deployments-for-aws-fargate/hints/buildspec_prod.yml ~/environment/REPLACEME_REPO_NAME/buildspec_prod.yml
   </pre>
 </details>
 
-2\. Check in and push to prod
+2\. cp containers-sydsummit-workshop-2019/all-lab-modules/lab2a-option1-ecs-labs/app/like-service ~/environment/REPLACEME_REPO_NAME/
 
-Add, commit, and push the new file to your repo. You can try to build the app again, but CodeBuild will just do the same thing because it's still looking at buildspec_prod.yml.
+
+Next we need to Add, commit, and push the new file to your repo. You can try to build the app again, but CodeBuild will just do the same thing because it's still looking at buildspec_prod.yml.
 
 <pre>
   $ git add .
@@ -225,64 +191,15 @@ Add, commit, and push the new file to your repo. You can try to build the app ag
   $ git push origin master
 </pre>
 
-### Create Pipeline for deployments
+Once all files are committed you should see the following in the Code Commit Repo fro like service.
+1. Service Folder
+2. buildspec_prod.yml
+3. Dockerfile
 
-1\. Create an AWS CodePipeline Pipeline and set it up to listen to AWS CodeCommit.
+### Review Pipeline for deployments
 
-Now it's time to hook everything together. In the AWS Management Console, navigate to the [AWS CodePipeline](https://console.aws.amazon.com/codepipeline/home#/) dashboard. Click on **Create Pipeline**.
-
-On the following pages, enter the following details:
-
-**Choose pipeline settings:**
-
-- Pipeline name: `prod-like-service` - *This is a production pipeline, so we'll prefix with prod*
-- Service role: **New service role**
-- Role name: *leave default*
-- Artifact store: Choose **Custom location** - *Create a new artifact S3 bucket manually*
-- Bucket: *Look for the artifact bucket that you created just now*
-
-Click **Next**
-
-![CodePipeline Choose pipeline settings](images/cp-create-name.png)
-
-**Add source stage:**
-
-- Source provider: **AWS CodeCommit** - *We checked in our code to CodeCommit, so that's where we'll start. CodePipeline also supports a variety of different source providers. Try them out later!*
-- Repository name: **CFNStackName-like-service** - *Name of your CodeCommit repo for the like-service*
-- Branch name: **master** - *We want this to automatically trigger when we push to the master branch in our repo*
-- Change detection options: **Amazon CloudWatch Events (recommended)** - *You have the option of using CodePipeline to poll CodeCommit for changes every minute, but using CloudWatch Events will trigger CodePipeline executions based on events, so it's much faster*
-
-Click **Next**.
-
-![CodePipeline Add source stage](images/cp-add-source.png)
-
-**Add build stage:**
-
-- Build provider: **AWS CodeBuild**
-- Project name: **prod-like-service-build**
-
-Click **Next**.
-
-![CodePipeline Created Build Project](images/cp-create-cb-complete.png)
-
-**Add deploy stage:**
-
-- Deployment provider: Select **Amazon ECS** - *This is the mechanism we're choosing to deploy with. CodePipeline also supports several other deployment options, but we're using ECS directly in this case.*
-- Cluster Name: Select your ECS Cluster. In my case, **Cluster-mysfits** - *This is the cluster that CodePipeline will deploy into.*
-- *Service Name: Enter `Mysfits-like-service` - Choose from the service name under that cluster*
-- Image definitions file - *optional*: Enter `imagedefinitions.json` - *This is the file we created within the buildspec_prod.yml file earlier*
-
-![CodePipeline ECS](images/cp-deploy-step.png)
-
-Click **Next**.
-
-Review your details and click **Create Pipeline**.
-
-5\. Test your pipeline.
-
-By default, when you create your pipeline, CodePipeline will automatically run through and try to deploy your application. If you see it go through all three stages with all GREEN, you're good to go. Otherwise, click into the links it gives you and troubleshoot the deployment.
-
-![CodePipeline ECS](images/cp-deploy-success.png)
+1\. Once you have committed the above files it would automatically trigger a deployment and you can review AWS CodePipeline.
+Once the above pipeline runs successfully you are good to go ahead and deploy a new version opf the project for testing.
 
 ## Deploy new version of Project
 
@@ -306,8 +223,6 @@ Once complete, please remember to follow the steps below in the **Workshop Clean
 This is really important because if you leave stuff running in your account, it will continue to generate charges.  Certain things were created by CloudFormation and certain things were created manually throughout the workshop.  Follow the steps below to make sure you clean up properly.
 
 Delete manually created resources throughout the labs:
-* Code service(s) - Delete Code Commit repo, Code, pipeline.
-
 * ECS service(s) - first update the desired task count to be 0.  Then delete the ECS service itself.
 * ECR - delete any Docker images pushed to your ECR repository.
 * CloudWatch logs groups
