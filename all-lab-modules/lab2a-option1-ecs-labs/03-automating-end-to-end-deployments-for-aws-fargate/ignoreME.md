@@ -180,10 +180,13 @@ Replace the container name with the name of your service, which should be `like-
   </pre>
 </details>
 
-2\. cp containers-sydsummit-workshop-2019/all-lab-modules/lab2a-option1-ecs-labs/app/like-service ~/environment/REPLACEME_REPO_NAME/
+2\. We need to move all like service files from local to Code commit repository.
 
+ <pre> 
+  $ cp containers-sydsummit-workshop-2019/all-lab-modules/lab2a-option1-ecs-labs/app/like-service ~/environment/REPLACEME_REPO_NAME/
+</pre>
 
-Next we need to Add, commit, and push the new file to your repo. You can try to build the app again, but CodeBuild will just do the same thing because it's still looking at buildspec_prod.yml.
+Next we need to Add, commit, and push the new files to your repo. You can try to build the app again, but CodeBuild will just do the same thing because it's still looking at buildspec_prod.yml.
 
 <pre>
   $ git add .
