@@ -37,10 +37,12 @@ $ git config --global credential.UseHttpPath true
 
 Up until now, Mythical Mysfits hasn't really been doing anything with source repos, so let's start checking things into repos like we're supposed to.
 
-Browse to AWS Code Commit in AWS console and review the repositories. You should see a StackName-like-service and Stackname-monolith-service.
+Browse to AWS Code Commit in AWS console and review the repositories, you should see 2 repos created by our initial CFN template.
+### StackName-like-service and
+### Stackname-monolith-service.
 
 
-2\. Clone repos and copy in app code
+2\. Clone the repos and copy in app code
 
 Earlier in the workshop, we set up the CodeCommit credential helper, so we'll use the HTTPS clone URLs instead of SSH.
 
@@ -64,9 +66,8 @@ Here's a reference architecture for what you'll be building:
 
 Here's what you'll be doing:
 
-* [Create AWS CodeBuild Project](#create-aws-codebuild-project)
+* [Review AWS CodeBuild Project](#create-aws-codebuild-project)
 * [Create BuildSpec File](#create-buildspec-file)
-* [Test your AWS CodeBuild Project](#test-your-aws-codebuild-project)
 
 ### Review AWS CodeBuild Project
 
@@ -139,7 +140,6 @@ Here are links to documentation and hints to help along the way. If you get stuc
 - https://docs.docker.com/engine/reference/builder/#entrypoint
 </pre>
 
-
 When we create the buildspec_prod.yml file, we used CODEBUILD_RESOLVED_SOURCE_VERSION. What is CODEBUILD_RESOLVED_SOURCE_VERSION and why didn't we just use CODEBUILD_SOURCE_VERSION? You can find out in the [Environment Variables for Build Environments](http://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-env-vars.html) documentation.
 
 <details>
@@ -150,7 +150,7 @@ When we create the buildspec_prod.yml file, we used CODEBUILD_RESOLVED_SOURCE_VE
 
 </details>
 
-Make sure you're in the like repository folder, which should be named something like **Stackname-like-service** and Ensure your buildspec_prod.yml is ready.
+Make sure you're in the like repository folder, which should be named something like **Stackname-like-service**.
 
 <pre>
 $ cd ~/environment/<b>REPLACE_ME_LIKE_REPOSITORY_NAME</b>
@@ -195,6 +195,9 @@ Once all files are committed you should see the following in the Code Commit Rep
 1. Service Folder
 2. buildspec_prod.yml
 3. Dockerfile
+
+![CodeCimmit Files](images/codecommit_files.png)
+
 
 ### Review Pipeline for deployments
 
