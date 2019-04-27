@@ -204,6 +204,8 @@ Once all files are committed you should see the following in the Code Commit Rep
 1\. Once you have committed the above files it would automatically trigger a deployment and you can review AWS CodePipeline.
 Once the above pipeline runs successfully you are good to go ahead and deploy a new version opf the project for testing.
 
+![CodePipeline_run](images/codepipeline_image.png)
+
 ## Deploy new version of Project
 
 Now that you have your application deploying automatically, let's deploy a new version!
