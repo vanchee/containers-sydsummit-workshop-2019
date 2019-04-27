@@ -6,9 +6,17 @@ In this lab, you will implement the end to end deployment and testing process fo
 
 Here's what you'll be doing:
 
-* Create new buildspec for production environments
-* Create Pipeline for deployments
-* Deploy new version of Project Cuddle
+* Move the Source code to AWS CodeCommit. 
+
+AWS CodeCommit is a fully-managed source control service that hosts secure Git-based repositories. It makes it easy for teams to collaborate on code in a secure and highly scalable ecosystem. CodeCommit eliminates the need to operate your own source control system or worry about scaling its infrastructure. You can use CodeCommit to securely store anything from source code to binaries, and it works seamlessly with your existing Git tools.
+
+* Review the buildspec for production environments
+The code pipeline and the buildspec has already been deployed through the initial CloudFormation template that was launched.
+
+* Review the Code Pipeline for deployments
+The code pipeline and the buildspec has already been deployed through the initial CloudFormation template that was launched.
+
+* Deploy new version of Project Cuddle and test the End to End deployments.
 
 ### Configure Git credentials
 
