@@ -38,7 +38,7 @@ What ties this all together is an **ECS Service**, which maintains a desired tas
 
     ![monitoring the update](images/03-deployment.png)
 
-    The update is fully deployed once there is just one instance of the Task running the latest revision:
+    After some time, you can expect to see two instance of the Task running the latest revision:
 
     ![fully deployed](images/03-fully-deployed.png)
 
