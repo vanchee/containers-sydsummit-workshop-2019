@@ -282,4 +282,4 @@ As with the monolith, you'll be using [Fargate](https://aws.amazon.com/fargate/)
 Congratulations, you've successfully rolled out the like microservice from the monolith.  If you have time, try repeating this lab to break out the adoption microservice.  
 
 
-### Congratulations..!!!  You have completed the third Lab -- [Please proceed to lab4 - here](https://github.com/vanchee/containers-sydsummit-workshop-2019/tree/master/all-lab-modules/lab2a-option1-ecs-labs/03-automating-end-to-end-deployments-for-aws-fargate)
+### Congratulations..!!!  You have completed the fourth Lab -- [Please proceed to lab5 - here](https://github.com/vanchee/containers-sydsummit-workshop-2019/tree/master/all-lab-modules/lab2a-option1-ecs-labs/03-automating-end-to-end-deployments-for-aws-fargate)
