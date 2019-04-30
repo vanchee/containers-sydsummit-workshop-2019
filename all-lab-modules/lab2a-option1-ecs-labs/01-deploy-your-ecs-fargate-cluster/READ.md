@@ -97,4 +97,4 @@ Nice work!  You've created a task definition and are able to deploy the monolith
 
 [*^ back to the top*](#monolith-to-microservices-with-docker-and-aws-fargate)
 
-### Congratulations..!!!  You have completed the third Lab -- [Please proceed to lab3 - here](https://github.com/vanchee/containers-sydsummit-workshop-2019/blob/master/all-lab-modules/lab2a-option1-ecs-labs/02-breaking-monolith-to-microservices-image-ecs/README.md)
+### Congratulations..!!!  You have completed the third Lab -- [Please proceed to lab4 - here](https://github.com/vanchee/containers-sydsummit-workshop-2019/blob/master/all-lab-modules/lab2a-option1-ecs-labs/02-breaking-monolith-to-microservices-image-ecs/README.md)
