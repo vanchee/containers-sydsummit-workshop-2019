@@ -1,6 +1,6 @@
 ## Let's Begin!
 
-### Workshop Setup:
+### Lab0 - Workshop Setup:
 
 1. Open the CloudFormation launch template link below in a new tab. The link will load the CloudFormation Dashboard and start the stack creation process in the chosen region:
 
