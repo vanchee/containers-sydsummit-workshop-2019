@@ -1,8 +1,8 @@
 Next steps scaling using ALB, service and splitting monolith to microservices.
 ===============================================================================
-* **Lab 3:** [Scale the adoption platform monolith with an ALB and an ECS Service](#lab-3---scale-the-adoption-platform-monolith-with-an-alb)
-* **Lab 4:** [Incrementally build and deploy more microservices with AWS Fargate](#lab-4-incrementally-build-and-deploy-each-microservice-using-fargate)
-* **Cleanup** [Put everything away nicely](#workshop-cleanup)
+* **[Scale the adoption platform monolith with an ALB and an ECS Service](#lab-3---scale-the-adoption-platform-monolith-with-an-alb)
+* **[Incrementally build and deploy more microservices with AWS Fargate](#lab-4-incrementally-build-and-deploy-each-microservice-using-fargate)
+
 
 ## Lab 3 - Scale the adoption platform monolith with an ALB
 
