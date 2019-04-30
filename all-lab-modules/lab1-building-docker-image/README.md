@@ -328,4 +328,4 @@ At this point, you should have a working container for the monolith codebase sto
 
 [*^ back to the top*](#monolith-to-microservices-with-docker-and-aws-fargate)
 
-### Congratulations..!!!  You have completed the Second Lab -- [Please proceed to lab2 - here](https://github.com/vanchee/containers-sydsummit-workshop-2019/blob/master/all-lab-modules/lab2a-option1-ecs-labs/01-deploy-your-ecs-fargate-cluster/READ.md)
+### Congratulations..!!!  You have completed the Second Lab -- [Please proceed to lab3 - here](https://github.com/vanchee/containers-sydsummit-workshop-2019/blob/master/all-lab-modules/lab2a-option1-ecs-labs/01-deploy-your-ecs-fargate-cluster/READ.md)
