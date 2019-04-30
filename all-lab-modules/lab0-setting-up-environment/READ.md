@@ -58,4 +58,6 @@ At this point, the Mythical Mysfits website should be available at the static si
 
 ![initial website](images/00-website.png)
 
+Congratulations..!!!  You have completed the First Lab -- [Please proceed to lab2 - here](https://github.com/vanchee/containers-sydsummit-workshop-2019/tree/master/all-lab-modules/lab1-building-docker-image)
+
 ###########################
